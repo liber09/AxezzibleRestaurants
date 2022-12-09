@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AxezzibleRestaurants</string>
+    <string name="addNewResButton">Add new</string>
+    <string name="showMapButton">Show map</string>
 </resources>

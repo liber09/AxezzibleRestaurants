@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AxezzibleRestaurants</string>
+    <string name="addNewResButton">Lägg till</string>
+    <string name="showMapButton">Visa karta</string>
+</resources>
