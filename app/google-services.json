@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "831745046024",
+    "project_id": "axezziblerestaurants",
+    "storage_bucket": "axezziblerestaurants.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831745046024:android:7c96e2ed3444877bb243bd",
+        "android_client_info": {
+          "package_name": "com.example.axezziblerestaurants"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831745046024-1mctug8s8e11tlqc2nqas6govhfu0ejl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIslPBlq7PYaq6D6waHp3-r3HikayTtrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831745046024-1mctug8s8e11tlqc2nqas6govhfu0ejl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
