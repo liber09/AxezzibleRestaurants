@@ -1,9 +1,11 @@
 package com.example.axezziblerestaurants
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -17,6 +19,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         addInitialData() //Add the first restaurants that are included in app
+
+        //Get the new restaurant button
+        val newRestaurantButtonClick = findViewById<Button>(R.id.addNewResButton)
+        //Set a clickListener
+        newRestaurantButtonClick.setOnClickListener{
+            val newRestaurantScreen = Intent(this,AddNewRestaurant::class.java) //Get a reference to the game activity screen
+            startActivity(newRestaurantScreen) //Go to the new restaurant activity
+        }
     }
 
     //Creates the first default restaurants included in app

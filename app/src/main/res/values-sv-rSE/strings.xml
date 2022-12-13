@@ -3,4 +3,5 @@
     <string name="app_name">AxezzibleRestaurants</string>
     <string name="addNewResButton">Lägg till</string>
     <string name="showMapButton">Visa karta</string>
+    <string name="returnToList">Tillbaka till listan</string>
 </resources>
