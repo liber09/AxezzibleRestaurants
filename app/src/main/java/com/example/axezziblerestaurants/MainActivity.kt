@@ -8,9 +8,11 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-//initialize database
-val db = Firebase.firestore
+
 class MainActivity : AppCompatActivity() {
+    //initialize database
+    val db = Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,12 +23,30 @@ class MainActivity : AppCompatActivity() {
     private fun addInitialData() {
         //Create new restaurant object
         val restaurantOne = Restaurant("TiAmo",
-            RestaurantType.ITALIAN,true,
+            "Italian",true,
             true, "Strandvägen 4", 44431,
             "Stenungsund","tiamo.png",4)
+        val restaurantTwo = Restaurant("McDonalds",
+            "Hamburger",false,
+            true, "Stenunge allé 1", 44430,
+            "Stenungsund","mcd.png",3)
+        val restaurantThree = Restaurant("Tonys",
+            "Hamburger",true,
+            true, "Sandbergs plats 1", 44430,
+            "Stenungsund","tonys.png",5)
+        val restaurantFour = Restaurant("Karlbergs Krog",
+            "Hamburger",true,
+            true, "Västra köpmansgatan 2", 44430,
+            "Stenungsund","karlbergs.png",5)
         //Add it to collection restaurants, SetOptions.merge() = do not overwrite if exists
         db.collection("restaurants").document("TiAmo").set(restaurantOne, SetOptions.merge())
+        db.collection("restaurants").document("McD_Stenungsund").set(restaurantTwo, SetOptions.merge())
+        db.collection("restaurants").document("Tonys").set(restaurantThree, SetOptions.merge())
+        db.collection("restaurants").document("Karlbergs").set(restaurantFour, SetOptions.merge())
     }
+
+    /*
+
 
     fun CreateUser(){
         //Create a user with firstname and lastname
@@ -44,4 +64,5 @@ class MainActivity : AppCompatActivity() {
                 Log.w(TAG, "Error adding document", e)
             }
     }
+    */
 }
