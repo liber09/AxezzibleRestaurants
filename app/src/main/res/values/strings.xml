@@ -3,4 +3,13 @@
     <string name="addNewResButton">Add new</string>
     <string name="showMapButton">Show map</string>
     <string name="returnToList">Return to list</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="postalCode">Postal code</string>
+    <string name="city">City</string>
+    <string name="type">Type</string>
+    <string name="rating">Rating</string>
+    <string name="guideDogsAllowed">Guide dogs allowed</string>
+    <string name="accessible">Accessible</string>
+    <string name="save">Save</string>
 </resources>

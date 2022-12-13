@@ -4,4 +4,13 @@
     <string name="addNewResButton">Lägg till</string>
     <string name="showMapButton">Visa karta</string>
     <string name="returnToList">Tillbaka till listan</string>
+    <string name="name">Namn</string>
+    <string name="address">Adress</string>
+    <string name="postalCode">Postnr</string>
+    <string name="city">Ort</string>
+    <string name="type">Typ</string>
+    <string name="rating">Betyg</string>
+    <string name="guideDogsAllowed">Ledarhundar tillåtna</string>
+    <string name="accessible">Tillgängligt</string>
+    <string name="save">Spara</string>
 </resources>
