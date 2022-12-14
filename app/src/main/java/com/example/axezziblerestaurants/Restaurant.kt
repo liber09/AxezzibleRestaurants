@@ -1,5 +1,6 @@
 package com.example.axezziblerestaurants
 
+//Need to assign default values to all properties or fireStore get will crash
 class Restaurant(
     val name: String = "",
     val type: String = "",

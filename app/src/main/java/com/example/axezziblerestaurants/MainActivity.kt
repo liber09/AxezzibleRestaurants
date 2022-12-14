@@ -29,55 +29,68 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         addInitialData() //Add the first restaurants that are included in app
         val restaurantPosition = intent.getIntExtra(RESTAURANT_POSITION_KEY, POSITION_NOT_SET)
+        if (restaurantPosition != POSITION_NOT_SET) {  // edit student
+            displayRestaurant(restaurantPosition)
+        }
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants)
         //Get the new restaurant button
         val newRestaurantButtonClick = findViewById<Button>(R.id.addNewResButton)
         //Set a clickListener
-        newRestaurantButtonClick.setOnClickListener{
-            val newRestaurantScreen = Intent(this,AddNewRestaurant::class.java) //Get a reference to the game activity screen
+        newRestaurantButtonClick.setOnClickListener { val newRestaurantScreen = Intent(
+            this,
+            AddNewRestaurant::class.java
+        ) //Get a reference to the game activity screen
             startActivity(newRestaurantScreen) //Go to the new restaurant activity
         }
     }
 
     override fun onResume() {
         super.onResume()
-
         recyclerView.adapter?.notifyDataSetChanged()
-
     }
 
     //Creates the first default restaurants included in app
     private fun addInitialData() {
         //Create new restaurant object
-        val restaurantOne = Restaurant("TiAmo",
-            "Italian",true,
+        val restaurantOne = Restaurant(
+            "TiAmo",
+            "Italian", true,
             true, "Strandvägen 4", 44431,
-            "Stenungsund","tiamo.png",4)
-        val restaurantTwo = Restaurant("McDonalds",
-            "Hamburger",false,
+            "Stenungsund", "tiamo.png", 4
+        )
+        val restaurantTwo = Restaurant(
+            "McDonalds",
+            "Hamburger", false,
             true, "Stenunge allé 1", 44430,
-            "Stenungsund","mcd.png",3)
-        val restaurantThree = Restaurant("Tonys",
-            "Hamburger",true,
+            "Stenungsund", "mcd.png", 3
+        )
+        val restaurantThree = Restaurant(
+            "Tonys",
+            "Hamburger", true,
             true, "Sandbergs plats 1", 44430,
-            "Stenungsund","tonys.png",5)
-        val restaurantFour = Restaurant("Karlbergs Krog",
-            "HomeCooking",true,
+            "Stenungsund", "tonys.png", 5
+        )
+        val restaurantFour = Restaurant(
+            "Karlbergs Krog",
+            "HomeCooking", true,
             true, "Västra köpmansgatan 2", 44430,
-            "Stenungsund","karlbergs.png",5)
+            "Stenungsund", "karlbergs.png", 5
+        )
         //Add it to collection restaurants, SetOptions.merge() = do not overwrite if exists
         db.collection("restaurants").document("TiAmo").set(restaurantOne, SetOptions.merge())
-        db.collection("restaurants").document("McD_Stenungsund").set(restaurantTwo, SetOptions.merge())
+        db.collection("restaurants").document("McD_Stenungsund")
+            .set(restaurantTwo, SetOptions.merge())
         db.collection("restaurants").document("Tonys").set(restaurantThree, SetOptions.merge())
-        db.collection("restaurants").document("Karlbergs").set(restaurantFour, SetOptions.merge())
-    }
-
-    fun displayRestaurant(position: Int){
+        db.collection("restaurants").document("Karlbergs")
+            .set(restaurantFour, SetOptions.merge())
+        }
+    fun displayRestaurant(position : Int) {
         val restaurant = DataManager.restaurants[position]
 
         nameTextView.setText(restaurant.name)
         typeTextView.setText(restaurant.type)
     }
 }
+
