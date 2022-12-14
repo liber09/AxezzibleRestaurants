@@ -6,23 +6,32 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+const val RESTAURANT_POSITION_KEY = "RESTAURANT_POSITION"
+const val POSITION_NOT_SET = -1
 
 class MainActivity : AppCompatActivity() {
     //initialize database
+    lateinit var nameTextView: TextView
+    lateinit var typeTextView: TextView
+    lateinit var recyclerView: RecyclerView
     val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         addInitialData() //Add the first restaurants that are included in app
-
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-
+        val restaurantPosition = intent.getIntExtra(RESTAURANT_POSITION_KEY, POSITION_NOT_SET)
+        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants)
         //Get the new restaurant button
         val newRestaurantButtonClick = findViewById<Button>(R.id.addNewResButton)
         //Set a clickListener
@@ -30,6 +39,13 @@ class MainActivity : AppCompatActivity() {
             val newRestaurantScreen = Intent(this,AddNewRestaurant::class.java) //Get a reference to the game activity screen
             startActivity(newRestaurantScreen) //Go to the new restaurant activity
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        recyclerView.adapter?.notifyDataSetChanged()
+
     }
 
     //Creates the first default restaurants included in app
@@ -58,24 +74,10 @@ class MainActivity : AppCompatActivity() {
         db.collection("restaurants").document("Karlbergs").set(restaurantFour, SetOptions.merge())
     }
 
-    /*
+    fun displayRestaurant(position: Int){
+        val restaurant = DataManager.restaurants[position]
 
-
-    fun CreateUser(){
-        //Create a user with firstname and lastname
-        val user = hashMapOf(
-            "first" to "Linda",
-            "last" to "Bergsängel"
-            )
-        // Add a new document with a generated ID
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
+        nameTextView.setText(restaurant.name)
+        typeTextView.setText(restaurant.type)
     }
-    */
 }

@@ -3,6 +3,7 @@ package com.example.axezziblerestaurants
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 object DataManager {
@@ -15,15 +16,16 @@ object DataManager {
     private fun getAllRestaurants() {
         val db = Firebase.firestore
         val dbRestaurants = db.collection("restaurants")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
+        dbRestaurants.addSnapshotListener { snapshot, e ->
+            if(snapshot != null) {
+                restaurants.clear()
+                for ( document in snapshot.documents) {
+                    val item = document.toObject<Restaurant>()
+                    if (item != null) {
+                        restaurants.add(item)
+                    }
                 }
             }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting documents: ", exception)
-            }
-        dbRestaurants.result
+        }
     }
 }
