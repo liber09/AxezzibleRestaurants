@@ -39,10 +39,15 @@ class MainActivity : AppCompatActivity() {
         val newRestaurantButtonClick = findViewById<Button>(R.id.addNewResButton)
         //Set a clickListener
         newRestaurantButtonClick.setOnClickListener { val newRestaurantScreen = Intent(
-            this,
-            AddNewRestaurant::class.java
-        ) //Get a reference to the game activity screen
+                    this,
+                AddNewRestaurant::class.java
+            ) //Get a reference to the game activity screen
             startActivity(newRestaurantScreen) //Go to the new restaurant activity
+        }
+        val mapButtonCLick = findViewById<Button>(R.id.showMapButton)
+        mapButtonCLick.setOnClickListener{
+            val mapActivity = Intent(this,MapActivity::class.java) //Get a reference to the game activity screen
+            startActivity(mapActivity) //Go to mainActivity
         }
     }
 
