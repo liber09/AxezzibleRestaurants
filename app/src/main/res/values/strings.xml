@@ -12,4 +12,5 @@
     <string name="guideDogsAllowed">Guide dogs allowed</string>
     <string name="accessible">Accessible</string>
     <string name="save">Save</string>
+    <string name="title_activity_map">MapActivity</string>
 </resources>
