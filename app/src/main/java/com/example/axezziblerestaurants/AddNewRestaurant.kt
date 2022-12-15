@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RatingBar
 import android.widget.Switch
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -47,7 +48,7 @@ class AddNewRestaurant : AppCompatActivity() {
         val address = findViewById<EditText>(R.id.addressEditText).text.toString()
         val postalCode = Integer.parseInt(findViewById<EditText>(R.id.postalCodeEditText).text.toString())
         val city = findViewById<EditText>(R.id.cityEditText).text.toString()
-        val rating = (findViewById<EditText>(R.id.ratingEditText).text.toString().toDouble())
+        val rating = (findViewById<RatingBar>(R.id.addNewRating).rating.toDouble())
         val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"",rating)
         db.collection("restaurants").add(restaurant)
     }
