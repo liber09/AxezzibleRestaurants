@@ -49,7 +49,7 @@ class RestaurantRecyclerAdapter (
 
         init {
             itemView.setOnClickListener {
-                val intent = Intent(context, MainActivity::class.java)
+                val intent = Intent(context, DetailsActivity::class.java)
                 intent.putExtra(RESTAURANT_POSITION_KEY, restaurantPosition)
                 context.startActivity(intent)
             }
