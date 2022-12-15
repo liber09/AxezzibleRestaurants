@@ -43,7 +43,6 @@ class RestaurantRecyclerAdapter (
         val nameTextView = itemView.findViewById<TextView>(R.id.nameTextView)
         val typeTextView = itemView.findViewById<TextView>(R.id.typeTextView)
         val ratingBar = itemView.findViewById<RatingBar>(R.id.ratingBar)
-        val moreInfoButton = itemView.findViewById<Button>(R.id.detailsButton)
         var restaurantPosition = 0
 
 
