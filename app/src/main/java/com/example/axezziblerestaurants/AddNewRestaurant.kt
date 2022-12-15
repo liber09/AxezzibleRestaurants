@@ -47,7 +47,7 @@ class AddNewRestaurant : AppCompatActivity() {
         val address = findViewById<EditText>(R.id.addressEditText).text.toString()
         val postalCode = Integer.parseInt(findViewById<EditText>(R.id.postalCodeEditText).text.toString())
         val city = findViewById<EditText>(R.id.cityEditText).text.toString()
-        val rating = Integer.parseInt(findViewById<EditText>(R.id.ratingEditText).text.toString())
+        val rating = (findViewById<EditText>(R.id.ratingEditText).text.toString().toDouble())
         val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"",rating)
         db.collection("restaurants").add(restaurant)
     }

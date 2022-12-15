@@ -10,6 +10,6 @@ class Restaurant(
     val postalCode: Int = 0,
     val city: String = "",
     val imageName: String = "",
-    val rating: Int = 0){
+    val rating: Double = 0.0){
 
 }

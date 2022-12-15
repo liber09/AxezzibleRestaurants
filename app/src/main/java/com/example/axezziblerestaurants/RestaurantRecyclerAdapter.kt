@@ -5,7 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class RestaurantRecyclerAdapter (
@@ -25,8 +28,8 @@ class RestaurantRecyclerAdapter (
 
         holder.nameTextView.text = restaurant.name
         holder.typeTextView.text = restaurant.type
+        holder.ratingBar.rating = restaurant.rating.toFloat()
         holder.restaurantPosition = position
-
     }
 
     override fun getItemCount() = restaurants.size
@@ -39,6 +42,8 @@ class RestaurantRecyclerAdapter (
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView = itemView.findViewById<TextView>(R.id.nameTextView)
         val typeTextView = itemView.findViewById<TextView>(R.id.typeTextView)
+        val ratingBar = itemView.findViewById<RatingBar>(R.id.ratingBar)
+        val moreInfoButton = itemView.findViewById<Button>(R.id.detailsButton)
         var restaurantPosition = 0
 
 
