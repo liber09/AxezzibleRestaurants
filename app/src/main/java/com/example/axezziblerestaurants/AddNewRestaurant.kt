@@ -1,11 +1,15 @@
 package com.example.axezziblerestaurants
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -29,6 +33,9 @@ class AddNewRestaurant : AppCompatActivity() {
         //Set a clickListener
         saveButtonClick.setOnClickListener{
             saveToDatabase()
+        }
+        val addImageButton = findViewById<Button>(R.id.addImageButton)
+        addImageButton.setOnClickListener {
         }
     }
 

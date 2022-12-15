@@ -17,6 +17,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.axezziblerestaurants.databinding.ActivityMapBinding
 import com.google.android.gms.location.*
+import kotlin.properties.Delegates
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -26,6 +27,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var locationProvider: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest
     lateinit var locationCallback: LocationCallback
+    var currentLatitude = 0.0
+    var currentLongitude = 0.0
 
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
+                    currentLatitude = location.latitude
+                    currentLongitude = location.longitude
                     Log.d("!!!", "lat: ${location.latitude}, lng: ${location.longitude}")
                 }
             }
@@ -69,8 +74,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
+        startLocationUpdates()
+        val currentLocation = LatLng(currentLatitude,currentLongitude)
+        mMap.addMarker(MarkerOptions().position(currentLocation).title("Your current location"))
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
     }
 
     override fun onRequestPermissionsResult(

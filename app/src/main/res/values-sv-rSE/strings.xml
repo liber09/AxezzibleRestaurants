@@ -13,4 +13,6 @@
     <string name="guideDogsAllowed">Ledarhundar tillåtna</string>
     <string name="accessible">Tillgängligt</string>
     <string name="save">Spara</string>
+    <string name="addImage">Lägg till foto</string>
+    <string name="title_activity_map">Karta</string>
 </resources>

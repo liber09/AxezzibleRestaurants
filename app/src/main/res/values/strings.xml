@@ -13,4 +13,5 @@
     <string name="accessible">Accessible</string>
     <string name="save">Save</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="addImage">Add image</string>
 </resources>
