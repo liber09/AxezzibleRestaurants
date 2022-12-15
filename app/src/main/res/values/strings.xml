@@ -14,4 +14,5 @@
     <string name="save">Save</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="addImage">Add image</string>
+    <string name="detailsButton">More info</string>
 </resources>
