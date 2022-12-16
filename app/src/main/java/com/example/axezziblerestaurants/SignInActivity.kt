@@ -1,11 +1,13 @@
 package com.example.axezziblerestaurants
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -61,9 +63,13 @@ class SignInActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener{ task ->
                 if(task.isSuccessful){
-                    Log.d("!!!", "User created")
+                    Log.d("!!!", "User signedIn")
+                    val mainActivity = Intent(this,MainActivity::class.java) //Get a reference to the game activity screen
+                    startActivity(mainActivity) //Go to mainActivity
                 }else{
-                    Log.d("!!!", "User not created ${task.exception}")
+                    Log.d("!!!", "User not signedIn ${task.exception}")
+                    Toast.makeText(this@SignInActivity,"" +
+                            "Something went wrong, please try again", Toast.LENGTH_SHORT).show()
                 }
             }
     }
