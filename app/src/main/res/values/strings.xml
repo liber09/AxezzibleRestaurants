@@ -15,4 +15,7 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="addImage">Add image</string>
     <string name="detailsButton">More info</string>
+    <string name="signIn">Sign in</string>
+    <string name="signUp">Sign up</string>
+    <string name="password">Password</string>
 </resources>

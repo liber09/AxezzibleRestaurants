@@ -16,4 +16,7 @@
     <string name="addImage">Lägg till foto</string>
     <string name="title_activity_map">Karta</string>
     <string name="detailsButton">Mera info</string>
+    <string name="signIn">Logga in</string>
+    <string name="signUp">Registrera dig</string>
+    <string name="password">Lösenord</string>
 </resources>
