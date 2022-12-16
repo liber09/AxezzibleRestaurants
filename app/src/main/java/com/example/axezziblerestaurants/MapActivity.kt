@@ -1,23 +1,25 @@
 package com.example.axezziblerestaurants
 
+import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-
+import com.example.axezziblerestaurants.databinding.ActivityMapBinding
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.axezziblerestaurants.databinding.ActivityMapBinding
-import com.google.android.gms.location.*
-import kotlin.properties.Delegates
+
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -71,13 +73,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        for(restaurant in DataManager.restaurants){
+            var address = restaurant.address.plus(" ".plus(restaurant.postalCode.toString().plus(" ".plus(restaurant.city))))
+            var restaurantPosition = getLocationByAddress(this,address)
+            if(restaurantPosition != null){
+                mMap.addMarker(MarkerOptions().position(restaurantPosition).title(restaurant.name))
+            }
 
+        }
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
         startLocationUpdates()
         val currentLocation = LatLng(currentLatitude,currentLongitude)
         mMap.addMarker(MarkerOptions().position(currentLocation).title("Your current location"))
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
     }
 
@@ -93,6 +100,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
+    fun getLocationByAddress(context: Context, strAddress: String?): LatLng? {
+        val coder = Geocoder(context)
+        try {
+            val address = coder.getFromLocationName(strAddress, 5) ?: return null
+            val location = address.first()
+            return LatLng(location.latitude, location.longitude)
+        } catch (e: Exception) {
+            Log.d("!!!",e.message.toString())
+        }
+        return null
+    }
+
     fun startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
             == PackageManager.PERMISSION_GRANTED) {
