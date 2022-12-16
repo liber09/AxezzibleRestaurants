@@ -49,7 +49,8 @@ class RestaurantRecyclerAdapter (
         init {
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailsActivity::class.java)
-                intent.putExtra(RESTAURANT_POSITION_KEY, restaurantPosition)
+                val restaurant = DataManager.restaurants[restaurantPosition]
+                intent.putExtra("restaurant", restaurant)
                 context.startActivity(intent)
             }
         }

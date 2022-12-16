@@ -48,4 +48,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsAddressTextView" />
 
+    <TextView
+        android:id="@+id/detailsTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsNameTextView" />
+
+    <RatingBar
+        android:id="@+id/detailsRatingBar"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:isIndicator="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsTypeTextView" />
+
+    <ImageView
+        android:id="@+id/detailsGuideDogImageView"
+        android:layout_width="130dp"
+        android:layout_height="127dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/ic_baseline_delete_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsRatingBar" />
+
+    <ImageView
+        android:id="@+id/detailsAccessibleImageView"
+        android:layout_width="130dp"
+        android:layout_height="127dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="60dp"
+        android:src="@drawable/ic_baseline_delete_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsRatingBar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
