@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         addInitialData() //Add the first restaurants that are included in app
         val restaurantPosition = intent.getIntExtra(RESTAURANT_POSITION_KEY, POSITION_NOT_SET)
-        if (restaurantPosition != POSITION_NOT_SET) {  // edit student
+        if (restaurantPosition != POSITION_NOT_SET) {
             displayRestaurant(restaurantPosition)
         }
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -63,33 +63,31 @@ class MainActivity : AppCompatActivity() {
             "TiAmo",
             "Italian", true,
             true, "Strandvägen 4", 44431,
-            "Stenungsund", "tiamo.png", 4.5
+            "Stenungsund", "tiamo.png", 4.5, 0
         )
         val restaurantTwo = Restaurant(
             "McDonalds",
             "Hamburger", false,
             true, "Stenunge allé 1", 44430,
-            "Stenungsund", "mcd.png", 3.0
+            "Stenungsund", "mcd.png", 3.0, 1
         )
         val restaurantThree = Restaurant(
             "Tonys",
             "Hamburger", true,
             true, "Sandbergs plats 1", 44430,
-            "Stenungsund", "tonys.png", 5.0
+            "Stenungsund", "tonys.png", 5.0,2
         )
         val restaurantFour = Restaurant(
             "Karlbergs Krog",
             "HomeCooking", true,
             true, "Västra köpmansgatan 2", 44430,
-            "Stenungsund", "karlbergs.png", 3.5
+            "Stenungsund", "karlbergs.png", 3.5,3
         )
         //Add it to collection restaurants, SetOptions.merge() = do not overwrite if exists
-        db.collection("restaurants").document("TiAmo").set(restaurantOne, SetOptions.merge())
-        db.collection("restaurants").document("McD_Stenungsund")
-            .set(restaurantTwo, SetOptions.merge())
-        db.collection("restaurants").document("Tonys").set(restaurantThree, SetOptions.merge())
-        db.collection("restaurants").document("Karlbergs")
-            .set(restaurantFour, SetOptions.merge())
+        db.collection("restaurants").document("0").set(restaurantOne, SetOptions.merge())
+        db.collection("restaurants").document("1").set(restaurantTwo, SetOptions.merge())
+        db.collection("restaurants").document("2").set(restaurantThree, SetOptions.merge())
+        db.collection("restaurants").document("3").set(restaurantFour, SetOptions.merge())
         }
     fun displayRestaurant(position : Int) {
         val restaurant = DataManager.restaurants[position]
