@@ -54,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="TextView"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,9 +75,10 @@
         android:id="@+id/detailsGuideDogImageView"
         android:layout_width="130dp"
         android:layout_height="127dp"
-        android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:src="@drawable/ic_baseline_delete_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.249"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsRatingBar" />
 
@@ -85,9 +87,10 @@
         android:layout_width="130dp"
         android:layout_height="127dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="60dp"
         android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsRatingBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

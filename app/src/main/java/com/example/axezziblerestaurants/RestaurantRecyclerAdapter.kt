@@ -2,10 +2,12 @@ package com.example.axezziblerestaurants
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
@@ -43,6 +45,7 @@ class RestaurantRecyclerAdapter (
         val nameTextView = itemView.findViewById<TextView>(R.id.nameTextView)
         val typeTextView = itemView.findViewById<TextView>(R.id.typeTextView)
         val ratingBar = itemView.findViewById<RatingBar>(R.id.ratingBar)
+
         var restaurantPosition = 0
 
 

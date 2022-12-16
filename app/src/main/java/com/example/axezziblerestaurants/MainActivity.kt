@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         val restaurantFour = Restaurant(
             "Karlbergs Krog",
             "HomeCooking", true,
-            true, "Västra köpmansgatan 2", 44430,
+            false, "Västra köpmansgatan 2", 44430,
             "Stenungsund", "karlbergs.png", 3.5,3
         )
         //Add it to collection restaurants, SetOptions.merge() = do not overwrite if exists

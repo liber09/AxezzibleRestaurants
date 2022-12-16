@@ -32,7 +32,7 @@
         android:id="@+id/ratingBar"
         android:layout_width="238dp"
         android:layout_height="44dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:clickable="false"
         android:contextClickable="false"
         android:isIndicator="true"
@@ -40,27 +40,8 @@
         android:min="0"
         android:numStars="5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.763"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/accessibleListImageView"
-        android:layout_width="101dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/accessible" />
-
-    <ImageView
-        android:id="@+id/guideDogsAllowedListImageView"
-        android:layout_width="88dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/accessibleListImageView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/guidedogs_allowed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
