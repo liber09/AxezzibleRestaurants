@@ -19,4 +19,5 @@
     <string name="signIn">Logga in</string>
     <string name="signUp">Registrera dig</string>
     <string name="password">Lösenord</string>
+    <string name="email">Epost</string>
 </resources>

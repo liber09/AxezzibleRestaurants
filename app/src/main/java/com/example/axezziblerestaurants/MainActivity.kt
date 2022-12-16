@@ -1,18 +1,19 @@
 package com.example.axezziblerestaurants
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+
 
 const val RESTAURANT_POSITION_KEY = "RESTAURANT_POSITION"
 const val POSITION_NOT_SET = -1
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var nameTextView: TextView
     lateinit var typeTextView: TextView
     lateinit var recyclerView: RecyclerView
+    lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,22 +34,33 @@ class MainActivity : AppCompatActivity() {
         if (restaurantPosition != POSITION_NOT_SET) {
             displayRestaurant(restaurantPosition)
         }
+        auth = Firebase.auth
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants)
         //Get the new restaurant button
         val newRestaurantButtonClick = findViewById<Button>(R.id.addNewResButton)
         //Set a clickListener
-        newRestaurantButtonClick.setOnClickListener { val newRestaurantScreen = Intent(
-                    this,
-                AddNewRestaurant::class.java
-            ) //Get a reference to the game activity screen
-            startActivity(newRestaurantScreen) //Go to the new restaurant activity
+        newRestaurantButtonClick.setOnClickListener {
+            val user = FirebaseAuth.getInstance().currentUser
+            if(user == null){
+                Toast.makeText(this@MainActivity,"You have to be signed in to add new restaurants!", Toast.LENGTH_SHORT).show()
+            }else {
+                val newRestaurantScreen = Intent(
+                    this, AddNewRestaurant::class.java
+                ) //Get a reference to the game activity screen
+                startActivity(newRestaurantScreen) //Go to the new restaurant activity
+            }
         }
         val mapButtonCLick = findViewById<Button>(R.id.showMapButton)
         mapButtonCLick.setOnClickListener{
             val mapActivity = Intent(this,MapActivity::class.java) //Get a reference to the game activity screen
             startActivity(mapActivity) //Go to mainActivity
+        }
+        val signInButton = findViewById<Button>(R.id.startSignInButton)
+        signInButton.setOnClickListener{
+            val signInActivity = Intent(this,SignInActivity::class.java) //Get a reference to the game activity screen
+            startActivity(signInActivity) //Go to signIn
         }
     }
 
