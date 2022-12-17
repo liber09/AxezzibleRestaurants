@@ -14,37 +14,27 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-
-const val RESTAURANT_POSITION_KEY = "RESTAURANT_POSITION"
-const val POSITION_NOT_SET = -1
-
 class MainActivity : AppCompatActivity() {
-    //initialize database
-    lateinit var nameTextView: TextView
-    lateinit var typeTextView: TextView
     lateinit var recyclerView: RecyclerView
-    lateinit var auth: FirebaseAuth
-    val db = Firebase.firestore
+    lateinit var auth: FirebaseAuth //authentication
+    val db = Firebase.firestore  //initialize database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         addInitialData() //Add the first restaurants that are included in app
-        val restaurantPosition = intent.getIntExtra(RESTAURANT_POSITION_KEY, POSITION_NOT_SET)
-        if (restaurantPosition != POSITION_NOT_SET) {
-            displayRestaurant(restaurantPosition)
-        }
         auth = Firebase.auth
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants)
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this) //Set the layout manager
+        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
         //Get the new restaurant button
         val newRestaurantButtonClick = findViewById<Button>(R.id.addNewResButton)
         //Set a clickListener
         newRestaurantButtonClick.setOnClickListener {
-            val user = FirebaseAuth.getInstance().currentUser
+            val user = FirebaseAuth.getInstance().currentUser  //Get the user currently logged in
+            //Check if user is logged in
             if(user == null){
-                Toast.makeText(this@MainActivity,"You have to be signed in to add new restaurants!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity,"You have to be signed in to add new restaurants!", Toast.LENGTH_SHORT).show() //Show warning message that user has to be signed in
             }else {
                 val newRestaurantScreen = Intent(
                     this, AddNewRestaurant::class.java
@@ -52,14 +42,22 @@ class MainActivity : AppCompatActivity() {
                 startActivity(newRestaurantScreen) //Go to the new restaurant activity
             }
         }
+        //Get the map button
         val mapButtonCLick = findViewById<Button>(R.id.showMapButton)
+        //Add clickListener to map button
         mapButtonCLick.setOnClickListener{
+            //Get the map activity
             val mapActivity = Intent(this,MapActivity::class.java) //Get a reference to the game activity screen
+            //Launch map activity
             startActivity(mapActivity) //Go to mainActivity
         }
+        //Get the sign in button
         val signInButton = findViewById<Button>(R.id.startSignInButton)
+        //Set a clickListener on the button
         signInButton.setOnClickListener{
+            //Get the sign in activity
             val signInActivity = Intent(this,SignInActivity::class.java) //Get a reference to the game activity screen
+            //Launch the sign in activity
             startActivity(signInActivity) //Go to signIn
         }
     }
@@ -71,25 +69,28 @@ class MainActivity : AppCompatActivity() {
 
     //Creates the first default restaurants included in app
     private fun addInitialData() {
-        //Create new restaurant object
+        //Create the first restaurant object
         val restaurantOne = Restaurant(
             "TiAmo",
             "Italian", true,
             true, "Strandvägen 4", 44431,
             "Stenungsund", "tiamo.png", 4.5, 0
         )
+        //Create the second restaurant object
         val restaurantTwo = Restaurant(
             "McDonalds",
             "Hamburger", false,
             true, "Stenunge allé 1", 44430,
             "Stenungsund", "mcd.png", 3.0, 1
         )
+        //Create the third restaurant object
         val restaurantThree = Restaurant(
             "Tonys",
             "Hamburger", true,
             true, "Sandbergs plats 1", 44430,
             "Stenungsund", "tonys.png", 5.0,2
         )
+        //Create the fourth restaurant object
         val restaurantFour = Restaurant(
             "Karlbergs Krog",
             "HomeCooking", true,
@@ -102,11 +103,4 @@ class MainActivity : AppCompatActivity() {
         db.collection("restaurants").document("2").set(restaurantThree, SetOptions.merge())
         db.collection("restaurants").document("3").set(restaurantFour, SetOptions.merge())
         }
-    fun displayRestaurant(position : Int) {
-        val restaurant = DataManager.restaurants[position]
-
-        nameTextView.setText(restaurant.name)
-        typeTextView.setText(restaurant.type)
-    }
 }
-
