@@ -40,6 +40,10 @@ class AddNewRestaurant : AppCompatActivity() {
         }
     }
 
+    /*
+    Read the data from the textfields
+    Save the information to the database.
+     */
     private fun saveToDatabase() {
         val name = findViewById<EditText>(R.id.nameEditText).text.toString()
         val type = findViewById<EditText>(R.id.typeEditText).text.toString()
@@ -51,6 +55,6 @@ class AddNewRestaurant : AppCompatActivity() {
         val rating = (findViewById<RatingBar>(R.id.addNewRating).rating.toDouble())
         val id = db.collection("restaurants").count().toString().toInt()+1
         val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"",rating,id)
-        db.collection("restaurants").add(restaurant)
+        db.collection("restaurants").add(restaurant) //Add restaurant to database
     }
 }

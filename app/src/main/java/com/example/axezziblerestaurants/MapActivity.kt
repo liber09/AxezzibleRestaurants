@@ -29,23 +29,25 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var locationProvider: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest
     lateinit var locationCallback: LocationCallback
-    var currentLatitude = 0.0
-    var currentLongitude = 0.0
+    lateinit var myLocation: LatLng
 
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        myLocation = LatLng(0.0,0.0)
         locationProvider = LocationServices.getFusedLocationProviderClient(this)
         locationRequest = LocationRequest.Builder(2000).build()
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
-                    currentLatitude = location.latitude
-                    currentLongitude = location.longitude
+                    myLocation = LatLng(location.latitude,location.longitude) //Users current location
+                    mMap.addMarker(MarkerOptions().position(myLocation).title("Your current location")) //Add marker on map with users current location
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation)) //Move focus to users current location
                     Log.d("!!!", "lat: ${location.latitude}, lng: ${location.longitude}")
                 }
             }
         }
+        //Check permission for location
         if ( ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -60,6 +62,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        startLocationUpdates()
     }
 
     /**
@@ -74,18 +77,20 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         for(restaurant in DataManager.restaurants){
+            //Set the address to contain street address, postalcode and city to get accurate positioniing
             var address = restaurant.address.plus(" ".plus(restaurant.postalCode.toString().plus(" ".plus(restaurant.city))))
             var restaurantPosition = getLocationByAddress(this,address)
+            //If restaurant locaton was found then place marker
             if(restaurantPosition != null){
                 mMap.addMarker(MarkerOptions().position(restaurantPosition).title(restaurant.name))
             }
 
         }
-        // Add a marker in Sydney and move the camera
+        //Start location updates
+
         startLocationUpdates()
-        val currentLocation = LatLng(currentLatitude,currentLongitude)
-        mMap.addMarker(MarkerOptions().position(currentLocation).title("Your current location"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
+        //mMap.addMarker(MarkerOptions().position(myLocation).title("Your current location"))
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
     }
 
     override fun onRequestPermissionsResult(
@@ -100,6 +105,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
+    /*
+    Gets the latitude and longitude by using street address
+     */
     fun getLocationByAddress(context: Context, strAddress: String?): LatLng? {
         val coder = Geocoder(context)
         try {
@@ -111,7 +119,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         return null
     }
-
+    /*
+    Get location updates if the user has moved
+     */
     fun startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
             == PackageManager.PERMISSION_GRANTED) {
@@ -122,15 +132,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             )
         }
     }
+    //Stop recieving updates on location
     fun stopLocationUpdates() {
         locationProvider.removeLocationUpdates(locationCallback)
     }
 
+    //Continue with location updates
     override fun onResume() {
         super.onResume()
         startLocationUpdates()
     }
 
+    //Temporary stop location updates
     override fun onPause() {
         super.onPause()
         stopLocationUpdates()

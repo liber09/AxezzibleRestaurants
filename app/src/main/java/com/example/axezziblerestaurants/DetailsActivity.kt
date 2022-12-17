@@ -15,13 +15,18 @@ class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
+        //Get the return to main button
         val returnButton = findViewById<Button>(R.id.returnButton)
+        //Set clickListener
         returnButton.setOnClickListener{
+            //Get the main activity we wanna go to
             val mainActivity = Intent(this,MainActivity::class.java) //Get a reference to the game activity screen
+            //Launch main activity
             startActivity(mainActivity) //Go to mainActivity
         }
         val intent = intent
-        val restaurant = intent.getSerializableExtra("restaurant") as Restaurant
+        val restaurant = intent.getSerializableExtra("restaurant") as Restaurant //Get the restaurant that was passed in from other activity
+        //Get all the component views so we can add data to them
         val nameTextView = findViewById<TextView>(R.id.detailsNameTextView)
         val addressTextView = findViewById<TextView>(R.id.detailsAddressTextView)
         val postalAddressTextView = findViewById<TextView>(R.id.detailsPostalAddressTextView)
@@ -29,11 +34,13 @@ class DetailsActivity : AppCompatActivity() {
         val typeTextView = findViewById<TextView>(R.id.detailsTypeTextView)
         val guideDogImageView = findViewById<ImageView>(R.id.detailsGuideDogImageView)
         val accessibleImageView = findViewById<ImageView>(R.id.detailsAccessibleImageView)
+        //Add data to the component views
         nameTextView.text = restaurant.name
         typeTextView.text = restaurant.type
         addressTextView.text = restaurant.address
         postalAddressTextView.text = restaurant.postalCode.toString().plus(" ".plus(restaurant.city))
         ratingView.rating = restaurant.rating.toFloat()
+        //Set the correct image on guideDogs and Accessibility images depending on database val
         if(restaurant.guideDogsAllowed){
             val uriImage = "@drawable/".plus("guidedogs_allowed") //Get filePath
             val imageResource = resources.getIdentifier(uriImage, null, packageName) //Get the actual image
