@@ -10,7 +10,8 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.google.type.PostalAddress
-
+const val RESTAURANT_POSITION_KEY = "RESTAURANT_POSITION"
+const val POSITION_NOT_SET = -1
 class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,7 @@ class DetailsActivity : AppCompatActivity() {
             startActivity(mainActivity) //Go to mainActivity
         }
         val intent = intent
-        val restaurant = intent.getSerializableExtra("restaurant") as Restaurant //Get the restaurant that was passed in from other activity
+        val restaurantPosition = intent.getIntExtra(RESTAURANT_POSITION_KEY, POSITION_NOT_SET) //Get the restaurant position from calling activity
         //Get all the component views so we can add data to them
         val nameTextView = findViewById<TextView>(R.id.detailsNameTextView)
         val addressTextView = findViewById<TextView>(R.id.detailsAddressTextView)
@@ -34,6 +35,8 @@ class DetailsActivity : AppCompatActivity() {
         val typeTextView = findViewById<TextView>(R.id.detailsTypeTextView)
         val guideDogImageView = findViewById<ImageView>(R.id.detailsGuideDogImageView)
         val accessibleImageView = findViewById<ImageView>(R.id.detailsAccessibleImageView)
+        //Get the restaurant from database
+        val restaurant = DataManager.restaurants[restaurantPosition]
         //Add data to the component views
         nameTextView.text = restaurant.name
         typeTextView.text = restaurant.type

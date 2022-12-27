@@ -15,13 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RestaurantRecyclerAdapter (
     val context: Context,
-    val restaurants: List<Restaurant>
-): RecyclerView.Adapter<RestaurantRecyclerAdapter.ViewHolder>(){
+    val restaurants: List<Restaurant>):
+    RecyclerView.Adapter<RestaurantRecyclerAdapter.ViewHolder>(){
     val layoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = layoutInflater.inflate(R.layout.list_item, parent, false )
-
         return ViewHolder(itemView)
     }
 
@@ -36,11 +35,6 @@ class RestaurantRecyclerAdapter (
 
     override fun getItemCount() = restaurants.size
 
-    fun removeStudent(position: Int) {
-        DataManager.restaurants.removeAt(position)
-        notifyDataSetChanged()
-    }
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView = itemView.findViewById<TextView>(R.id.nameTextView)
         val typeTextView = itemView.findViewById<TextView>(R.id.typeTextView)
@@ -52,8 +46,7 @@ class RestaurantRecyclerAdapter (
         init {
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailsActivity::class.java)
-                val restaurant = DataManager.restaurants[restaurantPosition]
-                intent.putExtra("restaurant", restaurant)
+                intent.putExtra(RESTAURANT_POSITION_KEY, restaurantPosition)
                 context.startActivity(intent)
             }
         }

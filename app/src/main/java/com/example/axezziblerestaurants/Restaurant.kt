@@ -13,4 +13,4 @@ class Restaurant(
     val city: String = "",
     val imageName: String = "",
     val rating: Double = 0.0,
-    val id: Int = 0): Serializable
+    val id: Int = 0)
