@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             //Launch the sign in activity
             startActivity(signInActivity) //Go to signIn
         }
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
     override fun onResume() {

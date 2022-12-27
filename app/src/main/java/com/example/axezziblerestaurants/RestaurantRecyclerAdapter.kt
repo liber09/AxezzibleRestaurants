@@ -42,7 +42,6 @@ class RestaurantRecyclerAdapter (
 
         var restaurantPosition = 0
 
-
         init {
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailsActivity::class.java)
@@ -50,8 +49,5 @@ class RestaurantRecyclerAdapter (
                 context.startActivity(intent)
             }
         }
-
-
-
     }
 }

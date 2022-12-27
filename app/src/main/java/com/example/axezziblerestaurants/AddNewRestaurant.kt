@@ -1,20 +1,19 @@
 package com.example.axezziblerestaurants
 
-import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RatingBar
-import android.widget.Switch
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import com.google.firebase.firestore.SetOptions
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+
+const val PERMISSION_CODE = 1000
+const val IMAGE_CAPTURE_CODE = 1001
 class AddNewRestaurant : AppCompatActivity() {
     //initialize database
     val db = Firebase.firestore
@@ -36,7 +35,44 @@ class AddNewRestaurant : AppCompatActivity() {
             saveToDatabase()
         }
         val addImageButton = findViewById<Button>(R.id.addImageButton)
-        addImageButton.setOnClickListener {
+        addImageButton.setOnClickListener{
+            openCamera()
+        }
+    }
+
+    private fun openCamera() {
+        //camera intent
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+        startActivity(cameraIntent)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        //called when user presses ALLOW or DENY from Permission Request Popup
+        when(requestCode){
+            PERMISSION_CODE -> {
+                if (grantResults.size > 0 && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED){
+                    //permission from popup was granted
+                    openCamera()
+                }
+                else{
+                    //permission from popup was denied
+                    //Toast.makeText(this@AddNewRestaurant,"Permission denied")
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val imageView = findViewById<ImageView>(R.id.addRestaurantImage)
+        if (requestCode == IMAGE_CAPTURE_CODE) {
+            // BitMap is data structure of image file which store the image in memory
+            val photo = data!!.extras!!["data"] as Bitmap?
+            // Set the image in imageview for display
+            imageView.setImageBitmap(photo)
         }
     }
 
@@ -53,8 +89,8 @@ class AddNewRestaurant : AppCompatActivity() {
         val postalCode = Integer.parseInt(findViewById<EditText>(R.id.postalCodeEditText).text.toString())
         val city = findViewById<EditText>(R.id.cityEditText).text.toString()
         val rating = (findViewById<RatingBar>(R.id.addNewRating).rating.toDouble())
-        val id = db.collection("restaurants").count().toString().toInt()+1
-        val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"",rating,id)
+        val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"",rating)
         db.collection("restaurants").add(restaurant) //Add restaurant to database
+        finish()
     }
 }
