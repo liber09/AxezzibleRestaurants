@@ -81,16 +81,41 @@ class AddNewRestaurant : AppCompatActivity() {
     Save the information to the database.
      */
     private fun saveToDatabase() {
-        val name = findViewById<EditText>(R.id.nameEditText).text.toString()
-        val type = findViewById<EditText>(R.id.typeEditText).text.toString()
-        val guideDogsAllowed = findViewById<Switch>(R.id.guideDogsAllowedSwitch).isChecked
-        val accessible = findViewById<Switch>(R.id.accessibleSwitch).isChecked
-        val address = findViewById<EditText>(R.id.addressEditText).text.toString()
-        val postalCode = Integer.parseInt(findViewById<EditText>(R.id.postalCodeEditText).text.toString())
-        val city = findViewById<EditText>(R.id.cityEditText).text.toString()
-        val rating = (findViewById<RatingBar>(R.id.addNewRating).rating.toDouble())
-        val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"",rating)
-        db.collection("restaurants").add(restaurant) //Add restaurant to database
-        finish()
+        if(validateInput()){
+            val name = findViewById<EditText>(R.id.nameEditText).text.toString()
+            val type = findViewById<EditText>(R.id.typeEditText).text.toString()
+            val guideDogsAllowed = findViewById<Switch>(R.id.guideDogsAllowedSwitch).isChecked
+            val accessible = findViewById<Switch>(R.id.accessibleSwitch).isChecked
+            val address = findViewById<EditText>(R.id.addressEditText).text.toString()
+            val postalCode = Integer.parseInt(findViewById<EditText>(R.id.postalCodeEditText).text.toString())
+            val city = findViewById<EditText>(R.id.cityEditText).text.toString()
+            val rating = (findViewById<RatingBar>(R.id.addNewRating).rating.toDouble())
+            val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"",rating)
+            db.collection("restaurants").add(restaurant) //Add restaurant to database
+            finish()
+        }else{
+            Toast.makeText(this,"Check your input",Toast.LENGTH_SHORT)
+        }
+
+    }
+
+    private fun validateInput():Boolean {
+        var inputOk = true
+        if(findViewById<EditText>(R.id.nameEditText).text.length < 3){
+            inputOk = false
+        }
+        if(findViewById<EditText>(R.id.typeEditText).text.length < 3){
+            inputOk = false
+        }
+        if (findViewById<EditText>(R.id.addressEditText).text.length <1){
+            inputOk = false
+        }
+        if(findViewById<EditText>(R.id.postalCodeEditText).text.length != 5){
+            inputOk = false
+        }
+        if(findViewById<EditText>(R.id.cityEditText).text.length <1){
+            inputOk = false
+        }
+        return inputOk
     }
 }
