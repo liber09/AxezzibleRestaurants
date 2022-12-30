@@ -52,47 +52,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsRestaurantImageView" />
 
-    <TextView
-        android:id="@+id/detailsAddressTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="292dp"
-        android:text="TextView"
+    <ImageView
+        android:id="@+id/detailsGuideDogImageView"
+        android:layout_width="82dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="92dp"
+        android:src="@drawable/ic_baseline_delete_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.349"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsNameTextView" />
-
-    <TextView
-        android:id="@+id/detailsPostalAddressTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsAddressTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsRatingBar" />
 
     <ImageView
         android:id="@+id/detailsAccessibleImageView"
-        android:layout_width="130dp"
-        android:layout_height="127dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="80dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="92dp"
         android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsRatingBar" />
 
-    <ImageView
-        android:id="@+id/detailsGuideDogImageView"
-        android:layout_width="130dp"
-        android:layout_height="127dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_baseline_delete_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.249"
+    <TextView
+        android:id="@+id/phoneNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="472dp"
+        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsRatingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsNameTextView" />
 
     <ImageView
         android:id="@+id/detailsRestaurantImageView"
@@ -103,5 +93,101 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsTypeTextView"
         app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+    <EditText
+        android:id="@+id/reviewMultilineEditTextView"
+        android:layout_width="334dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsRatingBar" />
+
+    <ImageView
+        android:id="@+id/phoneImageView"
+        android:layout_width="33dp"
+        android:layout_height="39dp"
+        app:srcCompat="@drawable/phone"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="565dp" />
+
+    <ImageView
+        android:id="@+id/addressImageView"
+        android:layout_width="33dp"
+        android:layout_height="39dp"
+        app:srcCompat="@drawable/address"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="619dp" />
+
+    <Button
+        android:id="@+id/btnShowOnMao"
+        android:layout_width="131dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="72dp"
+        android:text="@string/showOnMap"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="661dp" />
+
+    <TextView
+        android:id="@+id/detailsAddressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="516dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsNameTextView" />
+
+    <TextView
+        android:id="@+id/detailsPostalAddressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsAddressTextView" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="33dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/webUrlTextView"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toEndOf="@+id/phoneNumberTextView"
+        app:layout_constraintTop_toBottomOf="@+id/detailsAccessibleImageView"
+        app:srcCompat="@drawable/web" />
+
+    <ImageView
+        android:id="@+id/emailImageView"
+        android:layout_width="33dp"
+        android:layout_height="39dp"
+        app:srcCompat="@drawable/email"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="619dp" />
+
+    <TextView
+        android:id="@+id/webUrlTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="575dp" />
+
+    <TextView
+        android:id="@+id/eMailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="627dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
