@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import com.google.firebase.storage.FirebaseStorage
 import com.google.type.PostalAddress
 const val RESTAURANT_POSITION_KEY = "RESTAURANT_POSITION"
 const val POSITION_NOT_SET = -1
@@ -62,5 +63,21 @@ class DetailsActivity : AppCompatActivity() {
             val imageResource = resources.getIdentifier(uriImage, null, packageName) //Get the actual image
             accessibleImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource)) //Show the image on screen
         }
+        /*
+        if (restaurant.imageName.isNotEmpty()){
+            val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(restaurant.imageName)
+            imageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                var detailsRestaurantImageView = findViewById<ImageView>(R.id.detailsRestaurantImageView)
+                detailsRestaurantImageView.setImageBitmap(bitmap)
+            }.addOnFailureListener {
+                // Handle any errors
+            }
+        }
+         */
+
+
+
+
     }
 }
