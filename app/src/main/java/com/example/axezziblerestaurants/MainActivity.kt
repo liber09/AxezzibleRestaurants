@@ -51,13 +51,18 @@ class MainActivity : AppCompatActivity() {
             //Launch the sign in activity
             startActivity(signInActivity) //Go to signIn
         }
+        //Get a reference to the collection
         val docRef = db.collection("restaurants")
 
+        //Get snapshots if any
         docRef.addSnapshotListener { snapshot, e ->
+            //if there are snapshots
             if (snapshot != null) {
 
+                //Empty the restaurant list
                 DataManager.restaurants.clear()
 
+                //for each document (restaurant). Convert to restaurant object and add to restaurant list
                 for (document in snapshot.documents) {
                     val item = document.toObject<Restaurant>()
                     if (item != null) {
@@ -67,13 +72,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        Thread.sleep(1_000)
+        Thread.sleep(1_000) //Sleep while waiting for database response
         recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
     }
 
     override fun onResume() {
         super.onResume()
-        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
+        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview when returning to main actovity
     }
 
     //Creates the first default restaurants included in app

@@ -22,19 +22,21 @@ class RestaurantRecyclerAdapter (
     RecyclerView.Adapter<RestaurantRecyclerAdapter.ViewHolder>(){
     val layoutInflater = LayoutInflater.from(context)
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = layoutInflater.inflate(R.layout.list_item, parent, false )
+        val itemView = layoutInflater.inflate(R.layout.list_item, parent, false ) //The itemView that holds each restaurants layout inj the recyclerview
         return ViewHolder(itemView)
     }
 
-    @RequiresApi(Build.VERSION_CODES.S)
+    @RequiresApi(Build.VERSION_CODES.S) //Had to do this the be able to get the packageInformation
+    // using this line of code. Val pack = this.javaClass.packageName
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val restaurant = restaurants[position]
 
         holder.nameTextView.text = restaurant.name
         holder.typeTextView.text = restaurant.type
-        holder.ratingBar.rating = restaurant.rating.toFloat()
-        holder.restaurantPosition = position
+        holder.ratingBar.rating = restaurant.rating.toFloat() //The rating widget requires float datat0
+        holder.restaurantPosition = position //What restaurant is it
         holder.descriptionView.text = restaurant.description
         holder.cityTextView.text = restaurant.city
         //Set the correct image on guideDogs and Accessibility images depending on database val

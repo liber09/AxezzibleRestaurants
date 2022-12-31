@@ -18,6 +18,7 @@ class PlacesInfoAdapter(val context : Context) : GoogleMap.InfoWindowAdapter {
         return null
     }
 
+    //Get the extraInfo Window
     override fun getInfoWindow(marker : Marker): View? {
         val infoWindow = layoutInflater.inflate(R.layout.restaurant_map_info, null)
 

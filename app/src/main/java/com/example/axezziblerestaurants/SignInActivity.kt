@@ -36,6 +36,7 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
+    //Signup
     fun signUp(){
         val email = emailView.text.toString()
         val password = passwordView.text.toString()
@@ -51,7 +52,6 @@ class SignInActivity : AppCompatActivity() {
                     Log.d("!!!", "User not created ${task.exception}")
                 }
             }
-
     }
     fun signIn(){
         val email = emailView.text.toString()

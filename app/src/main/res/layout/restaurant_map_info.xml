@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/guidedogs_allowed" />
 
     <ImageView
         android:id="@+id/mapInfoAccessibleImageView"
@@ -23,7 +23,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapInfoGuideDogsAllowedImageView"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/accessible" />
 
     <TextView
         android:id="@+id/infoTextView"

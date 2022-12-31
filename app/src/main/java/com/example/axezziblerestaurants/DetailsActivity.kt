@@ -73,15 +73,15 @@ class DetailsActivity : AppCompatActivity() {
             val imageResource = resources.getIdentifier(uriImage, null, packageName) //Get the actual image
             accessibleImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource)) //Show the image on screen
         }
+        //Get the image from firebase
         if(restaurant.imageName.isNotEmpty()){
             val imageref = Firebase.storage.reference.child(restaurant.imageName)
             imageref.downloadUrl.addOnSuccessListener {Uri->
-                val imageURL = Uri.toString()
-
+                val imageURL = Uri.toString() // get the URL for the image
+                //Use third party product glide to load the image into the imageview
                 Glide.with(this)
                     .load(imageURL)
                     .into(restaurantImageView)
-
             }
             showOnMapButton.setOnClickListener{
                 //Get the main activity we wanna go to

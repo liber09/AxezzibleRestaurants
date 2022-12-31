@@ -104,6 +104,7 @@ class AddNewRestaurant : AppCompatActivity() {
 
     }
 
+    //Validate input fields Return false if any field is not correctly entered
     private fun validateInput():Boolean {
         var inputOk = true
         if(findViewById<EditText>(R.id.nameEditText).text.length < 3){
