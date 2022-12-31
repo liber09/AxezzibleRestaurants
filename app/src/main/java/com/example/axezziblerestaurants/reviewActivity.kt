@@ -17,6 +17,8 @@ class reviewActivity : AppCompatActivity() {
         val intent = intent
         val restaurantPosition = intent.getIntExtra(RESTAURANT_POSITION_KEY, POSITION_NOT_SET) //Get the restaurant position from calling activity
         restaurant = DataManager.restaurants[restaurantPosition] //The restaurant passed from the other activity
+        val reviewHeader = findViewById<TextView>(R.id.reviewHeader)
+        reviewHeader.text = reviewHeader.text.toString().plus(" ".plus(restaurant.name))
         val reviewTextView = findViewById<TextView>(R.id.reviewEditText)
         reviewTextView.text = restaurant.review //Set review text
         val reviewBarView = findViewById<RatingBar>(R.id.reviewRatingBar)
