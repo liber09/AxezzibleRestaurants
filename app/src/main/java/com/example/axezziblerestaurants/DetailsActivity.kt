@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import org.w3c.dom.Text
 
 const val RESTAURANT_POSITION_KEY = "RESTAURANT_POSITION"
 const val POSITION_NOT_SET = -1
@@ -21,6 +20,7 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_details)
         //Get the return to main button
         val returnButton = findViewById<Button>(R.id.returnButton)
+        val showOnMapButton = findViewById<Button>(R.id.showOnMapButton)
         //Set clickListener
         returnButton.setOnClickListener{
             //Get the main activity we wanna go to
@@ -81,6 +81,13 @@ class DetailsActivity : AppCompatActivity() {
                     .load(imageURL)
                     .into(restaurantImageView)
 
+            }
+            showOnMapButton.setOnClickListener{
+                //Get the main activity we wanna go to
+                val mapActivity = Intent(this,MapActivity::class.java) //Get a reference to the game activity screen
+                mapActivity.putExtra(RESTAURANT_POSITION_KEY,restaurantPosition)
+                //Launch main activity
+                startActivity(mapActivity) //Go to mainActivity
             }
         }
 

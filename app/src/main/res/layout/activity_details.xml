@@ -220,7 +220,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/webUrlTextView" />
 
             <Button
-                android:id="@+id/btnShowOnMao"
+                android:id="@+id/showOnMapButton"
                 android:layout_width="131dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="102dp"

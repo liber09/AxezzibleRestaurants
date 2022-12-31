@@ -7,6 +7,7 @@ import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
+import android.provider.ContactsContract.Data
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -30,19 +31,23 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var locationRequest: LocationRequest
     lateinit var locationCallback: LocationCallback
     lateinit var myLocation: LatLng
+    lateinit var selectedRestaurant: Restaurant
 
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val intent = intent
+        val restaurantPosition = intent.getIntExtra(RESTAURANT_POSITION_KEY, POSITION_NOT_SET)
+        selectedRestaurant = DataManager.restaurants[restaurantPosition]
         myLocation = LatLng(0.0,0.0)
         locationProvider = LocationServices.getFusedLocationProviderClient(this)
         locationRequest = LocationRequest.Builder(2000).build()
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
+
                     myLocation = LatLng(location.latitude,location.longitude) //Users current location
                     mMap.addMarker(MarkerOptions().position(myLocation).title("Your current location")) //Add marker on map with users current location
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation)) //Move focus to users current location
                     Log.d("!!!", "lat: ${location.latitude}, lng: ${location.longitude}")
                 }
             }
@@ -83,7 +88,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             //If restaurant locaton was found then place marker
             if(restaurantPosition != null){
                 mMap.addMarker(MarkerOptions().position(restaurantPosition).title(restaurant.name))
+                if(restaurant.name == selectedRestaurant.name && restaurant.address == selectedRestaurant.address && restaurant.city == selectedRestaurant.city){
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantPosition,15.0f))
+                }
             }
+
 
         }
         //Start location updates
