@@ -89,54 +89,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
-    <Switch
-        android:id="@+id/accessibleSwitch"
-        android:layout_width="175dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/accessible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNewRating" />
-
-    <Switch
-        android:id="@+id/guideDogsAllowedSwitch"
-        android:layout_width="176dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/guideDogsAllowed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNewRating" />
-
-    <ImageView
-        android:id="@+id/addRestaurantImage"
-        android:layout_width="126dp"
-        android:layout_height="122dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.736"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideDogsAllowedSwitch"
-        app:srcCompat="@drawable/ic_baseline_delete_24" />
-
-    <Button
-        android:id="@+id/addImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/addImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accessibleSwitch" />
-
     <RatingBar
         android:id="@+id/addNewRating"
         style="@style/Widget.AppCompat.RatingBar"
         android:layout_width="241dp"
         android:layout_height="55dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="148dp"
         android:max="5"
         android:min="0"
         android:numStars="5"
@@ -148,10 +106,52 @@
         app:layout_constraintTop_toBottomOf="@+id/typeEditText" />
 
     <Button
+        android:id="@+id/addImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="@string/addImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accessibleSwitch" />
+
+    <Switch
+        android:id="@+id/guideDogsAllowedSwitch"
+        android:layout_width="176dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/guideDogsAllowed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addNewRating" />
+
+    <ImageView
+        android:id="@+id/addRestaurantImage"
+        android:layout_width="126dp"
+        android:layout_height="122dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.736"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideDogsAllowedSwitch"
+        app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+    <Switch
+        android:id="@+id/accessibleSwitch"
+        android:layout_width="175dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/accessible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addNewRating" />
+
+    <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="80dp"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -183,5 +183,16 @@
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneEditText" />
+
+    <EditText
+        android:id="@+id/descriptionEditText"
+        android:layout_width="381dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="@string/description"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WebUrlEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

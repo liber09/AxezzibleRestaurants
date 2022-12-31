@@ -3,14 +3,14 @@ package com.example.axezziblerestaurants
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 
 class RestaurantRecyclerAdapter (
@@ -24,6 +24,7 @@ class RestaurantRecyclerAdapter (
         return ViewHolder(itemView)
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val restaurant = restaurants[position]
 
@@ -31,6 +32,29 @@ class RestaurantRecyclerAdapter (
         holder.typeTextView.text = restaurant.type
         holder.ratingBar.rating = restaurant.rating.toFloat()
         holder.restaurantPosition = position
+        holder.descriptionView.text = restaurant.description
+        holder.cityTextView.text = restaurant.city
+        //Set the correct image on guideDogs and Accessibility images depending on database val
+        val pack = this.javaClass.packageName
+        if(restaurant.guideDogsAllowed){
+            val uriImage = "@drawable/".plus("guidedogs_allowed") //Get filePath
+            val imageResource = context.resources.getIdentifier(uriImage, null, pack) //Get the actual image
+            holder.guideDogImage.setImageBitmap(BitmapFactory.decodeResource(context.resources, imageResource)) //Show the image on screen
+        }else{
+            val uriImage = "@drawable/".plus("dogs_not_allowed") //Get filePath
+            val imageResource = context.resources.getIdentifier(uriImage, null, pack) //Get the actual image
+            holder.guideDogImage.setImageBitmap(BitmapFactory.decodeResource(context.resources, imageResource)) //Show the image on screen
+        }
+        if(restaurant.accessible){
+            val uriImage = "@drawable/".plus("accessible") //Get filePath
+            val imageResource = context.resources.getIdentifier(uriImage, null, pack) //Get the actual image
+            holder.accessibleImage.setImageBitmap(BitmapFactory.decodeResource(context.resources, imageResource)) //Show the image on screen
+        }else{
+            val uriImage = "@drawable/".plus("not_accessible") //Get filePath
+            val imageResource = context.resources.getIdentifier(uriImage, null,pack) //Get the actual image
+            holder.accessibleImage.setImageBitmap(BitmapFactory.decodeResource(context.resources, imageResource)) //Show the image on screen
+        }
+
     }
 
     override fun getItemCount() = restaurants.size
@@ -39,9 +63,12 @@ class RestaurantRecyclerAdapter (
         val nameTextView = itemView.findViewById<TextView>(R.id.nameTextView)
         val typeTextView = itemView.findViewById<TextView>(R.id.typeTextView)
         val ratingBar = itemView.findViewById<RatingBar>(R.id.ratingBar)
-
+        val restaurantImage = itemView.findViewById<ImageView>(R.id.itemRestaurantImage)
+        val guideDogImage = itemView.findViewById<ImageView>(R.id.itemGuideDogImage)
+        val accessibleImage = itemView.findViewById<ImageView>(R.id.itemAccessibleImage)
+        val descriptionView = itemView.findViewById<TextView>(R.id.ItemDescriptionTextView)
+        val cityTextView = itemView.findViewById<TextView>(R.id.itemCityTextView)
         var restaurantPosition = 0
-
         init {
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailsActivity::class.java)

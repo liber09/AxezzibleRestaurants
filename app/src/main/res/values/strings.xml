@@ -24,4 +24,5 @@
     <string name="phone">Phone number</string>
     <string name="eMail">Email address</string>
     <string name="WebUrl">Homepage</string>
+    <string name="description">Description</string>
 </resources>

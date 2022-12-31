@@ -93,7 +93,8 @@ class AddNewRestaurant : AppCompatActivity() {
             val phoneNumber = findViewById<EditText>(R.id.phoneEditText).text.toString()
             val emailAddress = findViewById<EditText>(R.id.eMailEditText).text.toString()
             val webUrl = findViewById<EditText>(R.id.WebUrlEditText).text.toString()
-            val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"",rating,phoneNumber,emailAddress, webUrl)
+            val description = findViewById<EditText>(R.id.descriptionEditText).text.toString()
+            val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"",rating,phoneNumber,emailAddress, webUrl, description)
             db.collection("restaurants").add(restaurant) //Add restaurant to database
             finish()
         }else{

@@ -101,6 +101,7 @@ class MainActivity : AppCompatActivity() {
             "0303-88859",
             eMail="info@tiamostenungsund.se",
             webUrl="https://www.tiamostenungsund.se/",
+            description = "Nice italian restaurant with a good mix of foods."
         )
         //Create the second restaurant object
         val restaurantTwo = Restaurant(
@@ -108,7 +109,8 @@ class MainActivity : AppCompatActivity() {
             "Hamburger", false,
             true, "Stenunge allé 1", 44430,
             "Stenungsund", "mcd.png", 3.0, "0303-65480",
-            webUrl="https://www.mcdonalds.com/se/sv-se/location/160.html", eMail = "info@mcdonaldsstenungsund.se"
+            webUrl="https://www.mcdonalds.com/se/sv-se/location/160.html", eMail = "info@mcdonaldsstenungsund.se",
+            description = "Fastfood, nothing else to say."
         )
         //Create the third restaurant object
         val restaurantThree = Restaurant(
@@ -116,7 +118,8 @@ class MainActivity : AppCompatActivity() {
             "Hamburger", true,
             true, "Sandbergs plats 1", 44430,
             "Stenungsund", "tonys.png", 5.0,"072-5113397",
-            webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "tony.holm@tonysrestaurang.se"
+            webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "tony.holm@tonysrestaurang.se",
+            description = "Probably the best burger in town!"
         )
         //Create the fourth restaurant object
         val restaurantFour = Restaurant(
@@ -124,7 +127,8 @@ class MainActivity : AppCompatActivity() {
             "HomeCooking", true,
             false, "Västra köpmansgatan 2", 44430,
             "Stenungsund", "karlbergs.png", 3.5,"0303-80300",
-            webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "info@karlbergskrog.se"
+            webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "info@karlbergskrog.se",
+            description = "Nice fashionable restaurant with excellent view of the harbor and sea."
         )
         //Add it to collection restaurants, SetOptions.merge() = do not overwrite if exists
         db.collection("restaurants").document("0").set(restaurantOne, SetOptions.merge())

@@ -25,4 +25,5 @@
     <string name="phone">Telefonnummer</string>
     <string name="eMail">Epost address</string>
     <string name="WebUrl">Hemsida</string>
+    <string name="description">Beskrivning</string>
 </resources>
