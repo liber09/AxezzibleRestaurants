@@ -5,12 +5,11 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import com.google.firebase.storage.FirebaseStorage
-import com.google.type.PostalAddress
+import org.w3c.dom.Text
+
 const val RESTAURANT_POSITION_KEY = "RESTAURANT_POSITION"
 const val POSITION_NOT_SET = -1
 class DetailsActivity : AppCompatActivity() {
@@ -36,6 +35,9 @@ class DetailsActivity : AppCompatActivity() {
         val typeTextView = findViewById<TextView>(R.id.detailsTypeTextView)
         val guideDogImageView = findViewById<ImageView>(R.id.detailsGuideDogImageView)
         val accessibleImageView = findViewById<ImageView>(R.id.detailsAccessibleImageView)
+        val phoneNumberTextView = findViewById<TextView>(R.id.phoneNumberTextView)
+        val emailTextView = findViewById<TextView>(R.id.eMailTextView)
+        val webUrlTextView = findViewById<TextView>(R.id.webUrlTextView)
         //Get the restaurant from database
         val restaurant = DataManager.restaurants[restaurantPosition]
         //Add data to the component views
@@ -44,6 +46,9 @@ class DetailsActivity : AppCompatActivity() {
         addressTextView.text = restaurant.address
         postalAddressTextView.text = restaurant.postalCode.toString().plus(" ".plus(restaurant.city))
         ratingView.rating = restaurant.rating.toFloat()
+        phoneNumberTextView.text = restaurant.phoneNumber
+        emailTextView.text = restaurant.eMail
+        webUrlTextView.text = restaurant.webUrl
         //Set the correct image on guideDogs and Accessibility images depending on database val
         if(restaurant.guideDogsAllowed){
             val uriImage = "@drawable/".plus("guidedogs_allowed") //Get filePath

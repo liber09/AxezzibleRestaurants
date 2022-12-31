@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
             "Strandvägen 4",
             44431,
             "Stenungsund",
-            "tiamo.png",
+            "/restaurants/tiamo.jpg",
             4.5,
             "0303-88859",
             eMail="info@tiamostenungsund.se",
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             "McDonalds",
             "Hamburger", false,
             true, "Stenunge allé 1", 44430,
-            "Stenungsund", "mcd.png", 3.0, "0303-65480",
+            "Stenungsund", "/restaurants/mcd_stenungsund.jpeg", 3.0, "0303-65480",
             webUrl="https://www.mcdonalds.com/se/sv-se/location/160.html", eMail = "info@mcdonaldsstenungsund.se",
             description = "Fastfood, nothing else to say."
         )
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
             "Tonys",
             "Hamburger", true,
             true, "Sandbergs plats 1", 44430,
-            "Stenungsund", "tonys.png", 5.0,"072-5113397",
+            "Stenungsund", "/restaurants/tonys.jpeg.png", 5.0,"072-5113397",
             webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "tony.holm@tonysrestaurang.se",
             description = "Probably the best burger in town!"
         )
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             "Karlbergs Krog",
             "HomeCooking", true,
             false, "Västra köpmansgatan 2", 44430,
-            "Stenungsund", "karlbergs.png", 3.5,"0303-80300",
+            "Stenungsund", "/restaurants/karlbergs.jpeg", 3.5,"0303-80300",
             webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "info@karlbergskrog.se",
             description = "Nice fashionable restaurant with excellent view of the harbor and sea."
         )

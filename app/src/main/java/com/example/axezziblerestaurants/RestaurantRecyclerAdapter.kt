@@ -12,6 +12,9 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class RestaurantRecyclerAdapter (
     val context: Context,
@@ -53,6 +56,18 @@ class RestaurantRecyclerAdapter (
             val uriImage = "@drawable/".plus("not_accessible") //Get filePath
             val imageResource = context.resources.getIdentifier(uriImage, null,pack) //Get the actual image
             holder.accessibleImage.setImageBitmap(BitmapFactory.decodeResource(context.resources, imageResource)) //Show the image on screen
+        }
+        if(restaurant.imageName.isNotEmpty()){
+            val imageref = Firebase.storage.reference.child(restaurant.imageName)
+            imageref.downloadUrl.addOnSuccessListener {Uri->
+
+                val imageURL = Uri.toString()
+
+                Glide.with(context)
+                    .load(imageURL)
+                    .into(holder.restaurantImage)
+
+            }
         }
 
     }
