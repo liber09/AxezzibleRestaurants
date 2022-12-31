@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.provider.MediaStore
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -130,6 +131,15 @@ class AddNewRestaurant : AppCompatActivity() {
         }
         if(findViewById<EditText>(R.id.webUrlTextView).text.length <1){
             inputOk = false
+        }
+        //You are not allowed to add same restaurant multiple times
+        for(rest in DataManager.restaurants){
+            if(rest.name == findViewById<EditText>(R.id.nameEditText).text.toString()){
+                if(rest.address == findViewById<EditText>(R.id.addressEditText).text.toString()){
+                    inputOk = false
+                }
+
+            }
         }
         return inputOk
     }
