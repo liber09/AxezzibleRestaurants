@@ -10,9 +10,9 @@ object DataManager {
     //The list that holds all restaurants
     val restaurants = mutableListOf<Restaurant>()
 
-    init{
-        getAllRestaurants() //Returns all restaurants
-    }
+    //init{
+    //    getAllRestaurants() //Returns all restaurants
+    //}
 
     private fun getAllRestaurants() {
         val db = Firebase.firestore

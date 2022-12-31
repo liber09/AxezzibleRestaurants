@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this) //Set the layout manager
-        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
         //Get the new restaurant button
         val newRestaurantButtonClick = findViewById<Button>(R.id.addNewResButton)
         //Set a clickListener
@@ -60,12 +60,29 @@ class MainActivity : AppCompatActivity() {
             //Launch the sign in activity
             startActivity(signInActivity) //Go to signIn
         }
-        recyclerView.adapter?.notifyDataSetChanged()
+        val docRef = db.collection("restaurants")
+
+        docRef.addSnapshotListener { snapshot, e ->
+            if (snapshot != null) {
+
+                DataManager.restaurants.clear()
+
+                for (document in snapshot.documents) {
+                    val item = document.toObject<Restaurant>()
+                    if (item != null) {
+                        DataManager.restaurants.add(item)
+
+                    }
+                }
+            }
+        }
+        Thread.sleep(1_000)
+        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
     }
 
     override fun onResume() {
         super.onResume()
-        recyclerView.adapter?.notifyDataSetChanged()
+        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
     }
 
     //Creates the first default restaurants included in app
