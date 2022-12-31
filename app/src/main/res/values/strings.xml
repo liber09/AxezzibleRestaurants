@@ -21,4 +21,7 @@
     <string name="email">Email</string>
     <string name="showOnMap">Show on map</string>
     <string name="moreReviews">Show more reviews</string>
+    <string name="phone">Phone number</string>
+    <string name="eMail">Email address</string>
+    <string name="WebUrl">Homepage</string>
 </resources>

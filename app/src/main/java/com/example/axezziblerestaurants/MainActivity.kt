@@ -73,30 +73,41 @@ class MainActivity : AppCompatActivity() {
         //Create the first restaurant object
         val restaurantOne = Restaurant(
             "TiAmo",
-            "Italian", true,
-            true, "Strandvägen 4", 44431,
-            "Stenungsund", "tiamo.png", 4.5, 0
+            "Italian",
+            true,
+            true,
+            "Strandvägen 4",
+            44431,
+            "Stenungsund",
+            "tiamo.png",
+            4.5,
+            "0303-88859",
+            eMail="info@tiamostenungsund.se",
+            webUrl="https://www.tiamostenungsund.se/",
         )
         //Create the second restaurant object
         val restaurantTwo = Restaurant(
             "McDonalds",
             "Hamburger", false,
             true, "Stenunge allé 1", 44430,
-            "Stenungsund", "mcd.png", 3.0, 1
+            "Stenungsund", "mcd.png", 3.0, "0303-65480",
+            webUrl="https://www.mcdonalds.com/se/sv-se/location/160.html", eMail = "info@mcdonaldsstenungsund.se"
         )
         //Create the third restaurant object
         val restaurantThree = Restaurant(
             "Tonys",
             "Hamburger", true,
             true, "Sandbergs plats 1", 44430,
-            "Stenungsund", "tonys.png", 5.0,2
+            "Stenungsund", "tonys.png", 5.0,"072-5113397",
+            webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "tony.holm@tonysrestaurang.se"
         )
         //Create the fourth restaurant object
         val restaurantFour = Restaurant(
             "Karlbergs Krog",
             "HomeCooking", true,
             false, "Västra köpmansgatan 2", 44430,
-            "Stenungsund", "karlbergs.png", 3.5,3
+            "Stenungsund", "karlbergs.png", 3.5,"0303-80300",
+            webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "info@karlbergskrog.se"
         )
         //Add it to collection restaurants, SetOptions.merge() = do not overwrite if exists
         db.collection("restaurants").document("0").set(restaurantOne, SetOptions.merge())

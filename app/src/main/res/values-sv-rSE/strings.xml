@@ -22,4 +22,7 @@
     <string name="email">Epost</string>
     <string name="showOnMap">Visa på kartan</string>
     <string name="moreReviews">Visa flera recensioner</string>
+    <string name="phone">Telefonnummer</string>
+    <string name="eMail">Epost address</string>
+    <string name="WebUrl">Hemsida</string>
 </resources>
