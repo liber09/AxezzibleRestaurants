@@ -8,6 +8,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import org.w3c.dom.Text
 
 const val RESTAURANT_POSITION_KEY = "RESTAURANT_POSITION"
@@ -38,6 +41,7 @@ class DetailsActivity : AppCompatActivity() {
         val phoneNumberTextView = findViewById<TextView>(R.id.phoneNumberTextView)
         val emailTextView = findViewById<TextView>(R.id.eMailTextView)
         val webUrlTextView = findViewById<TextView>(R.id.webUrlTextView)
+        val restaurantImageView = findViewById<ImageView>(R.id.detailsRestaurantImageView)
         //Get the restaurant from database
         val restaurant = DataManager.restaurants[restaurantPosition]
         //Add data to the component views
@@ -68,18 +72,17 @@ class DetailsActivity : AppCompatActivity() {
             val imageResource = resources.getIdentifier(uriImage, null, packageName) //Get the actual image
             accessibleImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource)) //Show the image on screen
         }
-        /*
-        if (restaurant.imageName.isNotEmpty()){
-            val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(restaurant.imageName)
-            imageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
-                val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
-                var detailsRestaurantImageView = findViewById<ImageView>(R.id.detailsRestaurantImageView)
-                detailsRestaurantImageView.setImageBitmap(bitmap)
-            }.addOnFailureListener {
-                // Handle any errors
+        if(restaurant.imageName.isNotEmpty()){
+            val imageref = Firebase.storage.reference.child(restaurant.imageName)
+            imageref.downloadUrl.addOnSuccessListener {Uri->
+                val imageURL = Uri.toString()
+
+                Glide.with(this)
+                    .load(imageURL)
+                    .into(restaurantImageView)
+
             }
         }
-         */
 
 
 

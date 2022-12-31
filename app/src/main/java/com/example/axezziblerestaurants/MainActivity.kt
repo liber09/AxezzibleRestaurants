@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
             "Tonys",
             "Hamburger", true,
             true, "Sandbergs plats 1", 44430,
-            "Stenungsund", "/restaurants/tonys.jpeg.png", 5.0,"072-5113397",
+            "Stenungsund", "/restaurants/tonys.jpeg", 5.0,"072-5113397",
             webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "tony.holm@tonysrestaurang.se",
             description = "Probably the best burger in town!"
         )
