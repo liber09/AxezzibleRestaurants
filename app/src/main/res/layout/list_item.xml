@@ -39,6 +39,7 @@
         android:max="5"
         android:min="0"
         android:numStars="5"
+        android:progressTint="#FFEB3B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.763"
         app:layout_constraintStart_toStartOf="parent"
