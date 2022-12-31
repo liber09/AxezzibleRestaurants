@@ -21,6 +21,7 @@ class DetailsActivity : AppCompatActivity() {
         //Get the return to main button
         val returnButton = findViewById<Button>(R.id.returnButton)
         val showOnMapButton = findViewById<Button>(R.id.showOnMapButton)
+        val moreReviewsButton = findViewById<Button>(R.id.showMoreReviewsButton)
         //Set clickListener
         returnButton.setOnClickListener{
             //Get the main activity we wanna go to
@@ -88,6 +89,13 @@ class DetailsActivity : AppCompatActivity() {
                 mapActivity.putExtra(RESTAURANT_POSITION_KEY,restaurantPosition)
                 //Launch main activity
                 startActivity(mapActivity) //Go to mainActivity
+            }
+            moreReviewsButton.setOnClickListener{
+                //Get the main activity we wanna go to
+                val reviewActivity = Intent(this,reviewActivity::class.java) //Get a reference to the game activity screen
+                reviewActivity.putExtra(RESTAURANT_POSITION_KEY,restaurantPosition)
+                //Launch main activity
+                startActivity(reviewActivity) //Go to mainActivity
             }
         }
 

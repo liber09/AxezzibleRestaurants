@@ -42,15 +42,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(newRestaurantScreen) //Go to the new restaurant activity
             }
         }
-        //Get the map button
-        val mapButtonCLick = findViewById<Button>(R.id.showMapButton)
-        //Add clickListener to map button
-        mapButtonCLick.setOnClickListener{
-            //Get the map activity
-            val mapActivity = Intent(this,MapActivity::class.java) //Get a reference to the game activity screen
-            //Launch map activity
-            startActivity(mapActivity) //Go to mainActivity
-        }
         //Get the sign in button
         val signInButton = findViewById<Button>(R.id.startSignInButton)
         //Set a clickListener on the button
@@ -101,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             "0303-88859",
             eMail="info@tiamostenungsund.se",
             webUrl="https://www.tiamostenungsund.se/",
-            description ="Nice italian restaurant with a good mix of foods."
+            description ="Nice italian restaurant with a good mix of foods.", review = "Nice italian food. You always feel welcome. Nice place, will come back"
         )
         //Create the second restaurant object
         val restaurantTwo = Restaurant(
@@ -110,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             true, "Stenunge allé 1", 44430,
             "Stenungsund", "/restaurants/mcd_stenungsund.jpeg", 3.0, "0303-65480",
             webUrl="https://www.mcdonalds.com/se/sv-se/location/160.html", eMail ="info@mcdonaldsstenungsund.se",
-            description ="Fastfood, nothing else to say."
+            description ="Fastfood, nothing else to say.", review = "Good for beeing a fast food restaurant. Clean and fresh"
         )
         //Create the third restaurant object
         val restaurantThree = Restaurant(
@@ -119,7 +110,7 @@ class MainActivity : AppCompatActivity() {
             true, "Sandbergs plats 1", 44430,
             "Stenungsund", "/restaurants/tonys.jpeg", 5.0,"072-5113397",
             webUrl="https://stenungsund.tonysrestaurang.se/", eMail ="tony.holm@tonysrestaurang.se",
-            description = "Probably the best burger in town!"
+            description = "Probably the best burger in town!", review = "Best burgers i have ever eaten. Recommend!!"
         )
         //Create the fourth restaurant object
         val restaurantFour = Restaurant(
@@ -128,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             false, "Västra köpmansgatan 2", 44430,
             "Stenungsund", "/restaurants/karlbergs.jpeg", 3.5,"0303-80300",
             webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "info@karlbergskrog.se",
-            description = "Nice fashionable restaurant with excellent view of the harbor and sea."
+            description = "Nice fashionable restaurant with excellent view of the harbor and sea.", review = "A little expensive but i kinda like it. Food is good, view is excellent"
         )
         //Add it to collection restaurants, SetOptions.merge() = do not overwrite if exists
         db.collection("restaurants").document("0").set(restaurantOne, SetOptions.merge())

@@ -26,7 +26,7 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/mapInfoNameTextView"
+        android:id="@+id/infoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -36,10 +36,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mapInfoRatingTextView"
+        android:id="@+id/infoNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="43dp" />
+        app:layout_constraintStart_toEndOf="@+id/mapInfoGuideDogsAllowedImageView"
+        app:layout_constraintTop_toBottomOf="@+id/infoTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

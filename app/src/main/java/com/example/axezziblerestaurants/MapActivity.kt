@@ -1,24 +1,25 @@
 package com.example.axezziblerestaurants
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Address
 import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
-import android.provider.ContactsContract.Data
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.axezziblerestaurants.databinding.ActivityMapBinding
+import com.example.mapsintro.PlacesInfoAdapter
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 
@@ -52,6 +53,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+
         //Check permission for location
         if ( ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
@@ -70,6 +72,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         startLocationUpdates()
     }
 
+
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -81,6 +85,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        val adapter = PlacesInfoAdapter(this)
+        mMap.setInfoWindowAdapter(adapter)
+
         for(restaurant in DataManager.restaurants){
             //Set the address to contain street address, postalcode and city to get accurate positioniing
             var address = restaurant.address.plus(" ".plus(restaurant.postalCode.toString().plus(" ".plus(restaurant.city))))
@@ -158,3 +165,5 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         stopLocationUpdates()
     }
 }
+
+data class PlaceInfo(val name: String, val info: String, val postion: LatLng, val image: Int)

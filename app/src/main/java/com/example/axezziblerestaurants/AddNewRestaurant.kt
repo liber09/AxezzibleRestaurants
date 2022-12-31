@@ -120,6 +120,15 @@ class AddNewRestaurant : AppCompatActivity() {
         if(findViewById<EditText>(R.id.cityEditText).text.length <1){
             inputOk = false
         }
+        if(findViewById<EditText>(R.id.phoneEditText).text.length <1){
+            inputOk = false
+        }
+        if(findViewById<EditText>(R.id.eMailEditText).text.length <1){
+            inputOk = false
+        }
+        if(findViewById<EditText>(R.id.webUrlTextView).text.length <1){
+            inputOk = false
+        }
         return inputOk
     }
 }

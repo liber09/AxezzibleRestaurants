@@ -26,4 +26,6 @@
     <string name="eMail">Epost address</string>
     <string name="WebUrl">Hemsida</string>
     <string name="description">Beskrivning</string>
+    <string name="goBack">Tillbaka</string>
+    <string name="reviews">Recensioner</string>
 </resources>
