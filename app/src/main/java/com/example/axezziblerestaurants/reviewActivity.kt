@@ -16,15 +16,14 @@ class reviewActivity : AppCompatActivity() {
         //Get data from the other activity
         val intent = intent
         val restaurantPosition = intent.getIntExtra(RESTAURANT_POSITION_KEY, POSITION_NOT_SET) //Get the restaurant position from calling activity
-        restaurant = DataManager.restaurants[restaurantPosition]
+        restaurant = DataManager.restaurants[restaurantPosition] //The restaurant passed from the other activity
         val reviewTextView = findViewById<TextView>(R.id.reviewEditText)
-        reviewTextView.text = restaurant.review
+        reviewTextView.text = restaurant.review //Set review text
         val reviewBarView = findViewById<RatingBar>(R.id.reviewRatingBar)
-        reviewBarView.rating = restaurant.rating.toFloat()
-        val returnButton = findViewById<Button>(R.id.goBackButton)
+        reviewBarView.rating = restaurant.rating.toFloat() //Set rating
+        val returnButton = findViewById<Button>(R.id.goBackButton)  //get return button
         returnButton.setOnClickListener{
-            finish()
+            finish() //Return to other activity
         }
-
     }
 }

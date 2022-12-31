@@ -94,7 +94,7 @@
         style="@style/Widget.AppCompat.RatingBar"
         android:layout_width="241dp"
         android:layout_height="55dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="212dp"
         android:max="5"
         android:min="0"
         android:numStars="5"
@@ -105,32 +105,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/typeEditText" />
 
-    <Button
-        android:id="@+id/addImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="@string/addImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accessibleSwitch" />
-
-    <Switch
-        android:id="@+id/guideDogsAllowedSwitch"
-        android:layout_width="176dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/guideDogsAllowed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNewRating" />
-
     <ImageView
         android:id="@+id/addRestaurantImage"
         android:layout_width="126dp"
         android:layout_height="122dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.736"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,11 +120,32 @@
         android:id="@+id/accessibleSwitch"
         android:layout_width="175dp"
         android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
         android:text="@string/accessible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addNewRating" />
+
+    <Switch
+        android:id="@+id/guideDogsAllowedSwitch"
+        android:layout_width="176dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/guideDogsAllowed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addNewRating" />
+
+    <Button
+        android:id="@+id/addImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="@string/addImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accessibleSwitch" />
 
     <Button
         android:id="@+id/saveButton"
@@ -194,5 +194,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/WebUrlEditText" />
+
+    <EditText
+        android:id="@+id/addNewReviewEditText"
+        android:layout_width="380dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="@string/reviews"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
