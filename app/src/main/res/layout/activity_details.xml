@@ -18,12 +18,10 @@
                 android:id="@+id/webUrlTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="204dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toBottomOf="@+id/eMailTextView" />
 
@@ -31,12 +29,10 @@
                 android:id="@+id/phoneNumberTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="196dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/phoneImageView"
                 app:layout_constraintTop_toBottomOf="@+id/detailsAccessibleImageView" />
 
@@ -56,11 +52,9 @@
                 android:id="@+id/detailsPostalAddressTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="205dp"
+                android:layout_marginStart="12dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/addressImageView"
                 app:layout_constraintTop_toBottomOf="@+id/detailsAddressTextView" />
 
@@ -70,9 +64,7 @@
                 android:layout_height="39dp"
                 android:layout_marginStart="107dp"
                 android:layout_marginTop="3dp"
-                android:layout_marginEnd="10dp"
                 android:contentDescription="Email icon"
-                app:layout_constraintEnd_toStartOf="@+id/eMailTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phoneImageView"
                 app:srcCompat="@drawable/email" />
@@ -83,9 +75,7 @@
                 android:layout_height="39dp"
                 android:layout_marginStart="107dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="10dp"
                 android:contentDescription="Web icon"
-                app:layout_constraintEnd_toStartOf="@+id/webUrlTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailImageView"
                 app:srcCompat="@drawable/web" />
@@ -110,7 +100,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="164dp"
                 android:text="TextView"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,9 +112,7 @@
                 android:layout_height="39dp"
                 android:layout_marginStart="107dp"
                 android:layout_marginTop="17dp"
-                android:layout_marginEnd="18dp"
                 android:contentDescription="Phone icon"
-                app:layout_constraintEnd_toStartOf="@+id/phoneNumberTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailsAccessibleImageView"
                 app:srcCompat="@drawable/phone" />
@@ -135,9 +123,7 @@
                 android:layout_height="39dp"
                 android:layout_marginStart="106dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="10dp"
                 android:contentDescription="Address icon"
-                app:layout_constraintEnd_toStartOf="@+id/detailsPostalAddressTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView6"
                 app:srcCompat="@drawable/address" />
@@ -148,9 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="238dp"
                 android:text="@string/returnToList"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -171,12 +155,10 @@
                 android:id="@+id/eMailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginEnd="204dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/emailImageView"
                 app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextView" />
 
@@ -210,12 +192,10 @@
                 android:id="@+id/detailsAddressTextView"
                 android:layout_width="60dp"
                 android:layout_height="21dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="202dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/addressImageView"
                 app:layout_constraintTop_toBottomOf="@+id/webUrlTextView" />
 
@@ -223,14 +203,12 @@
                 android:id="@+id/showOnMapButton"
                 android:layout_width="131dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="102dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="178dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="@string/showOnMap"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addressImageView" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/detailsAccessibleImageView"

@@ -7,10 +7,12 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.text.set
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
@@ -37,7 +39,8 @@ class RestaurantRecyclerAdapter (
         holder.typeTextView.text = restaurant.type
         holder.ratingBar.rating = restaurant.rating.toFloat() //The rating widget requires float datat0
         holder.restaurantPosition = position //What restaurant is it
-        holder.descriptionView.text = restaurant.description
+        holder.descriptionView.text.clear()
+        holder.descriptionView.setText(restaurant.description)
         holder.cityTextView.text = restaurant.city
         //Set the correct image on guideDogs and Accessibility images depending on database val
         val pack = this.javaClass.packageName
@@ -83,7 +86,7 @@ class RestaurantRecyclerAdapter (
         val restaurantImage = itemView.findViewById<ImageView>(R.id.itemRestaurantImage)
         val guideDogImage = itemView.findViewById<ImageView>(R.id.itemGuideDogImage)
         val accessibleImage = itemView.findViewById<ImageView>(R.id.itemAccessibleImage)
-        val descriptionView = itemView.findViewById<TextView>(R.id.ItemDescriptionTextView)
+        val descriptionView = itemView.findViewById<EditText>(R.id.ItemDescriptionTextView)
         val cityTextView = itemView.findViewById<TextView>(R.id.itemCityTextView)
         var restaurantPosition = 0
         init {
