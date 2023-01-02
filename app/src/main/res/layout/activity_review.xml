@@ -29,27 +29,36 @@
 
     <EditText
         android:id="@+id/reviewEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="368dp"
+        android:layout_height="173dp"
+        android:layout_marginTop="52dp"
         android:editable="false"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/reviewRatingBar" />
 
     <RatingBar
         android:id="@+id/reviewRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:isIndicator="true"
         android:progressTint="#FFEB3B"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/reviewHeader" />
+
+    <TextView
+        android:id="@+id/nameReviewTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviewRatingBar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
