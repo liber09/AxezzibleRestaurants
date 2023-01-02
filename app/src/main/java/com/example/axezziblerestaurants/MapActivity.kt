@@ -62,6 +62,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 REQUEST_LOCATION
             )
         }
+
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -102,11 +103,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         }
-        //Start location updates
-
         startLocationUpdates()
-        //mMap.addMarker(MarkerOptions().position(myLocation).title("Your current location"))
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
     }
 
     override fun onRequestPermissionsResult(

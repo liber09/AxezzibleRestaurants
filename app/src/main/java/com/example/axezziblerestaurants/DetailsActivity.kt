@@ -18,10 +18,12 @@ class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
+
         //Get the return to main button
         val returnButton = findViewById<Button>(R.id.returnButton)
         val showOnMapButton = findViewById<Button>(R.id.showOnMapButton)
         val moreReviewsButton = findViewById<Button>(R.id.showMoreReviewsButton)
+
         //Set clickListener
         returnButton.setOnClickListener{
             //Get the main activity we wanna go to
@@ -29,8 +31,10 @@ class DetailsActivity : AppCompatActivity() {
             //Launch main activity
             startActivity(mainActivity) //Go to mainActivity
         }
+
         val intent = intent
         val restaurantPosition = intent.getIntExtra(RESTAURANT_POSITION_KEY, POSITION_NOT_SET) //Get the restaurant position from calling activity
+
         //Get all the component views so we can add data to them
         val nameTextView = findViewById<TextView>(R.id.detailsNameTextView)
         val addressTextView = findViewById<TextView>(R.id.detailsAddressTextView)
@@ -43,6 +47,7 @@ class DetailsActivity : AppCompatActivity() {
         val emailTextView = findViewById<TextView>(R.id.eMailTextView)
         val webUrlTextView = findViewById<TextView>(R.id.webUrlTextView)
         val restaurantImageView = findViewById<ImageView>(R.id.detailsRestaurantImageView)
+
         //Get the restaurant from database
         val restaurant = DataManager.restaurants[restaurantPosition]
         //Add data to the component views
@@ -54,6 +59,7 @@ class DetailsActivity : AppCompatActivity() {
         phoneNumberTextView.text = restaurant.phoneNumber
         emailTextView.text = restaurant.eMail
         webUrlTextView.text = restaurant.webUrl
+
         //Set the correct image on guideDogs and Accessibility images depending on database val
         if(restaurant.guideDogsAllowed){
             val uriImage = "@drawable/".plus("guidedogs_allowed") //Get filePath
@@ -73,6 +79,7 @@ class DetailsActivity : AppCompatActivity() {
             val imageResource = resources.getIdentifier(uriImage, null, packageName) //Get the actual image
             accessibleImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource)) //Show the image on screen
         }
+
         //Get the image from firebase
         if(restaurant.imageName.isNotEmpty()){
             val imageref = Firebase.storage.reference.child(restaurant.imageName)
@@ -83,6 +90,7 @@ class DetailsActivity : AppCompatActivity() {
                     .load(imageURL)
                     .into(restaurantImageView)
             }
+
             showOnMapButton.setOnClickListener{
                 //Get the main activity we wanna go to
                 val mapActivity = Intent(this,MapActivity::class.java) //Get a reference to the game activity screen
@@ -90,12 +98,13 @@ class DetailsActivity : AppCompatActivity() {
                 //Launch main activity
                 startActivity(mapActivity) //Go to mainActivity
             }
+
             moreReviewsButton.setOnClickListener{
-                //Get the main activity we wanna go to
-                val reviewActivity = Intent(this,reviewActivity::class.java) //Get a reference to the game activity screen
+                //Get the review activity we wanna go to
+                val reviewActivity = Intent(this,reviewActivity::class.java) //Get a reference to the review activity screen
                 reviewActivity.putExtra(RESTAURANT_POSITION_KEY,restaurantPosition)
-                //Launch main activity
-                startActivity(reviewActivity) //Go to mainActivity
+                //Launch review activity
+                startActivity(reviewActivity) //Go to reviewActivity
             }
         }
 
