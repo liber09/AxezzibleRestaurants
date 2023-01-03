@@ -95,6 +95,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             var restaurantPosition = getLocationByAddress(this,address)
             //If restaurant locaton was found then place marker
             if(restaurantPosition != null){
+                val marker = mMap.addMarker(MarkerOptions().position(restaurantPosition))
+                marker?.tag = restaurant
                 mMap.addMarker(MarkerOptions().position(restaurantPosition).title(restaurant.name))
                 if(restaurant.name == selectedRestaurant.name && restaurant.address == selectedRestaurant.address && restaurant.city == selectedRestaurant.city){
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantPosition,15.0f))

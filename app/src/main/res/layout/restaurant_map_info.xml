@@ -2,8 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
 
     <ImageView
         android:id="@+id/mapInfoGuideDogsAllowedImageView"
@@ -20,25 +21,29 @@
         android:layout_width="47dp"
         android:layout_height="41dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mapInfoGuideDogsAllowedImageView"
         app:layout_constraintTop_toBottomOf="@+id/mapInfoImage"
         app:srcCompat="@drawable/accessible" />
 
     <TextView
         android:id="@+id/mapInfoType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mapInfoImage"
         app:layout_constraintTop_toBottomOf="@+id/mapInfoName" />
 
     <TextView
         android:id="@+id/mapInfoName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_width="92dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/mapInfoImage"
