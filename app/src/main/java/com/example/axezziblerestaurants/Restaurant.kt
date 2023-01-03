@@ -15,4 +15,5 @@ class Restaurant(
     val eMail: String = "",
     val webUrl: String = "",
     val description: String = "",
-    val review: String ="")
+    val review: String = "",
+    val reviewerName: String = "")

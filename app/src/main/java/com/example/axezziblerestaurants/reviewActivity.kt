@@ -23,6 +23,8 @@ class reviewActivity : AppCompatActivity() {
         reviewTextView.text = restaurant.review //Set review text
         val reviewBarView = findViewById<RatingBar>(R.id.reviewRatingBar)
         reviewBarView.rating = restaurant.rating.toFloat() //Set rating
+        val nameReviewTextView = findViewById<TextView>(R.id.nameReviewTextView)
+        nameReviewTextView.text = restaurant.reviewerName
         val returnButton = findViewById<Button>(R.id.goBackButton)  //get return button
         returnButton.setOnClickListener{
             finish() //Return to other activity
