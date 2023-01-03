@@ -22,7 +22,7 @@ class DetailsActivity : AppCompatActivity() {
         //Get the return to main button
         val returnButton = findViewById<Button>(R.id.returnButton)
         val showOnMapButton = findViewById<Button>(R.id.showOnMapButton)
-        val moreReviewsButton = findViewById<Button>(R.id.showMoreReviewsButton)
+        val moreReviewsText = findViewById<TextView>(R.id.showMoreReviewsText)
 
         //Set clickListener
         returnButton.setOnClickListener{
@@ -99,7 +99,7 @@ class DetailsActivity : AppCompatActivity() {
                 startActivity(mapActivity) //Go to mainActivity
             }
 
-            moreReviewsButton.setOnClickListener{
+            moreReviewsText.setOnClickListener{
                 //Get the review activity we wanna go to
                 val reviewActivity = Intent(this,reviewActivity::class.java) //Get a reference to the review activity screen
                 reviewActivity.putExtra(RESTAURANT_POSITION_KEY,restaurantPosition)

@@ -8,89 +8,25 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="104dp"
+        tools:layout_editor_absoluteY="63dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/webUrlTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
-                android:text="TextView"
-                android:textAlignment="textStart"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/eMailTextView" />
-
-            <TextView
-                android:id="@+id/phoneNumberTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="TextView"
-                android:textAlignment="textStart"
-                app:layout_constraintStart_toEndOf="@+id/phoneImageView"
-                app:layout_constraintTop_toBottomOf="@+id/detailsAccessibleImageView" />
-
-            <Button
-                android:id="@+id/showMoreReviewsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="107dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="105dp"
-                android:text="@string/moreReviews"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reviewTextView" />
-
-            <TextView
-                android:id="@+id/detailsPostalAddressTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="TextView"
-                android:textAlignment="textStart"
-                app:layout_constraintStart_toEndOf="@+id/addressImageView"
-                app:layout_constraintTop_toBottomOf="@+id/detailsAddressTextView" />
-
-            <ImageView
-                android:id="@+id/emailImageView"
-                android:layout_width="33dp"
-                android:layout_height="39dp"
-                android:layout_marginStart="107dp"
-                android:layout_marginTop="3dp"
-                android:contentDescription="Email icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phoneImageView"
-                app:srcCompat="@drawable/email" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="33dp"
-                android:layout_height="39dp"
-                android:layout_marginStart="107dp"
-                android:layout_marginTop="4dp"
-                android:contentDescription="Web icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailImageView"
-                app:srcCompat="@drawable/web" />
 
             <ImageView
                 android:id="@+id/detailsGuideDogImageView"
                 android:layout_width="82dp"
                 android:layout_height="67dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="107dp"
                 android:src="@drawable/ic_baseline_delete_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/detailsAccessibleImageView"
-                app:layout_constraintTop_toBottomOf="@+id/showMoreReviewsButton" />
+                app:layout_constraintTop_toBottomOf="@+id/showMoreReviewsText" />
 
             <TextView
                 android:id="@+id/detailsNameTextView"
@@ -110,19 +46,96 @@
                 android:id="@+id/phoneImageView"
                 android:layout_width="33dp"
                 android:layout_height="39dp"
-                android:layout_marginStart="107dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="Phone icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailsAccessibleImageView"
                 app:srcCompat="@drawable/phone" />
 
+            <TextView
+                android:id="@+id/phoneNumberTextView"
+                android:layout_width="327dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                android:textAlignment="textStart"
+                app:layout_constraintStart_toEndOf="@+id/phoneImageView"
+                app:layout_constraintTop_toBottomOf="@+id/detailsAccessibleImageView" />
+
+            <TextView
+                android:id="@+id/eMailTextView"
+                android:layout_width="325dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="TextView"
+                android:textAlignment="textStart"
+                app:layout_constraintStart_toEndOf="@+id/emailImageView"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextView" />
+
+            <ImageView
+                android:id="@+id/emailImageView"
+                android:layout_width="33dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="Email icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phoneImageView"
+                app:srcCompat="@drawable/email" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="33dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="Web icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailImageView"
+                app:srcCompat="@drawable/web" />
+
+            <TextView
+                android:id="@+id/webUrlTextView"
+                android:layout_width="322dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="20dp"
+                android:text="TextView"
+                android:textAlignment="textStart"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintTop_toBottomOf="@+id/eMailTextView" />
+
+            <TextView
+                android:id="@+id/detailsAddressTextView"
+                android:layout_width="320dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="28dp"
+                android:text="TextView"
+                android:textAlignment="textStart"
+                app:layout_constraintStart_toEndOf="@+id/addressImageView"
+                app:layout_constraintTop_toBottomOf="@+id/webUrlTextView" />
+
+            <TextView
+                android:id="@+id/detailsPostalAddressTextView"
+                android:layout_width="309dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="12dp"
+                android:text="TextView"
+                android:textAlignment="textStart"
+                app:layout_constraintStart_toEndOf="@+id/addressImageView"
+                app:layout_constraintTop_toBottomOf="@+id/detailsAddressTextView" />
+
             <ImageView
                 android:id="@+id/addressImageView"
                 android:layout_width="33dp"
                 android:layout_height="39dp"
-                android:layout_marginStart="106dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
                 android:contentDescription="Address icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView6"
@@ -152,17 +165,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/detailsNameTextView" />
 
             <TextView
-                android:id="@+id/eMailTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="TextView"
-                android:textAlignment="textStart"
-                app:layout_constraintStart_toEndOf="@+id/emailImageView"
-                app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextView" />
-
-            <TextView
                 android:id="@+id/reviewTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -188,17 +190,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailsRestaurantImageView" />
 
-            <TextView
-                android:id="@+id/detailsAddressTextView"
-                android:layout_width="60dp"
-                android:layout_height="21dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:text="TextView"
-                android:textAlignment="textStart"
-                app:layout_constraintStart_toEndOf="@+id/addressImageView"
-                app:layout_constraintTop_toBottomOf="@+id/webUrlTextView" />
-
             <Button
                 android:id="@+id/showOnMapButton"
                 android:layout_width="131dp"
@@ -215,12 +206,12 @@
                 android:layout_width="80dp"
                 android:layout_height="69dp"
                 android:layout_marginStart="110dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="32dp"
                 android:src="@drawable/ic_baseline_delete_24"
                 app:layout_constraintEnd_toStartOf="@+id/detailsGuideDogImageView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/showMoreReviewsButton" />
+                app:layout_constraintTop_toBottomOf="@+id/showMoreReviewsText" />
 
             <ImageView
                 android:id="@+id/detailsRestaurantImageView"
@@ -233,6 +224,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailsTypeTextView"
                 app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+            <TextView
+                android:id="@+id/showMoreReviewsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:text="@string/moreReviews"
+                android:textColor="#2196F3"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reviewTextView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
