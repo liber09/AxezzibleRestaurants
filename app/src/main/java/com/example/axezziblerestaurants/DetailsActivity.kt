@@ -47,6 +47,7 @@ class DetailsActivity : AppCompatActivity() {
         val emailTextView = findViewById<TextView>(R.id.eMailTextView)
         val webUrlTextView = findViewById<TextView>(R.id.webUrlTextView)
         val restaurantImageView = findViewById<ImageView>(R.id.detailsRestaurantImageView)
+        val reviewTextView = findViewById<TextView>(R.id.reviewTextView)
 
         //Get the restaurant from database
         val restaurant = DataManager.restaurants[restaurantPosition]
@@ -59,6 +60,13 @@ class DetailsActivity : AppCompatActivity() {
         phoneNumberTextView.text = restaurant.phoneNumber
         emailTextView.text = restaurant.eMail
         webUrlTextView.text = restaurant.webUrl
+        //If reviewtext is too long, shorten to 50 characters
+        if (restaurant.review.length > 50){
+            val text = restaurant.review.substring(0,50)
+            reviewTextView.text = text
+        }else{
+            reviewTextView.text = restaurant.review
+        }
 
         //Set the correct image on guideDogs and Accessibility images depending on database val
         if(restaurant.guideDogsAllowed){
