@@ -22,15 +22,15 @@ class PlacesInfoAdapter(val context : Context) : GoogleMap.InfoWindowAdapter {
     override fun getInfoWindow(marker : Marker): View? {
         val infoWindow = layoutInflater.inflate(R.layout.restaurant_map_info, null)
         val imageView = infoWindow.findViewById<ImageView>(R.id.mapInfoGuideDogsAllowedImageView)
-        val titleView = infoWindow.findViewById<TextView>(R.id.infoNameTextView)
-        val infoView = infoWindow.findViewById<TextView>(R.id.infoTextView)
+        val titleView = infoWindow.findViewById<TextView>(R.id.mapInfoName)
+        val typeView = infoWindow.findViewById<TextView>(R.id.mapInfoType)
         val place = marker.tag as? PlaceInfo
 
         //Set title and images on mapPopup
         titleView.text = place?.name
-        infoView.text = place?.info
+        typeView.text = place?.type
         if (place != null) {
-            imageView.setImageResource(place.image)
+            //imageView.setImageResource(place.imageURL)
         }
 
         return infoWindow

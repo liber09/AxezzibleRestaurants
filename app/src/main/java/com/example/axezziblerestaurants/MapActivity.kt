@@ -162,5 +162,3 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         stopLocationUpdates()
     }
 }
-
-data class PlaceInfo(val name: String, val info: String, val postion: LatLng, val image: Int)
