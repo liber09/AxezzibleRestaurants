@@ -18,7 +18,7 @@ import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
 import java.util.*
 
-lateinit var fileName: String
+var fileName: String = ""
 class AddNewRestaurant : AppCompatActivity() {
     //initialize database
     val db = Firebase.firestore
@@ -60,7 +60,7 @@ class AddNewRestaurant : AppCompatActivity() {
     Save the information to the database.
      */
     private fun saveToDatabase() {
-        //if(validateInput()){
+        if(validateInput()) {
 
             imageUri?.let { uploadImageToFirebase(it) }
             val name = findViewById<EditText>(R.id.nameEditText).text.toString()
@@ -68,7 +68,8 @@ class AddNewRestaurant : AppCompatActivity() {
             val guideDogsAllowed = findViewById<Switch>(R.id.guideDogsAllowedSwitch).isChecked
             val accessible = findViewById<Switch>(R.id.accessibleSwitch).isChecked
             val address = findViewById<EditText>(R.id.addressEditText).text.toString()
-            val postalCode = Integer.parseInt(findViewById<EditText>(R.id.postalCodeEditText).text.toString())
+            val postalCode =
+                Integer.parseInt(findViewById<EditText>(R.id.postalCodeEditText).text.toString())
             val city = findViewById<EditText>(R.id.cityEditText).text.toString()
             val rating = (findViewById<RatingBar>(R.id.addNewRating).rating.toDouble())
             val phoneNumber = findViewById<EditText>(R.id.phoneEditText).text.toString()
@@ -76,11 +77,33 @@ class AddNewRestaurant : AppCompatActivity() {
             val webUrl = findViewById<EditText>(R.id.WebUrlEditText).text.toString()
             val description = findViewById<EditText>(R.id.descriptionEditText).text.toString()
             val review = findViewById<EditText>(R.id.addNewReviewEditText).text.toString()
-            val pathFile = "/restaurants/$fileName"
-            val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,pathFile,rating,phoneNumber,emailAddress, webUrl, description, review)
+            var pathFile = ""
+            if(fileName.isNullOrEmpty()){
+                pathFile = "/restaurants/default.jpg"
+            }else{
+                pathFile = "/restaurants/$fileName"
+            }
+            val restaurant = Restaurant(
+                name,
+                type,
+                guideDogsAllowed,
+                accessible,
+                address,
+                postalCode,
+                city,
+                pathFile,
+                rating,
+                phoneNumber,
+                emailAddress,
+                webUrl,
+                description,
+                review
+            )
             db.collection("restaurants").add(restaurant) //Add restaurant to database
             finish()
-        //
+        }else{
+            Toast.makeText(this@AddNewRestaurant,"Please check the filled in data and try again", Toast.LENGTH_LONG).show() //Show warning message that user has to be signed in
+        }
 
     }
 
@@ -118,19 +141,11 @@ class AddNewRestaurant : AppCompatActivity() {
         if (findViewById<EditText>(R.id.addressEditText).text.toString().length <1){
             inputOk = false
         }
-        if(findViewById<EditText>(R.id.postalCodeEditText).text.toString().length != 5){
+        if(findViewById<EditText>(R.id.postalCodeEditText).text.toString().length != 5 ||
+            !isNumericToX(findViewById<EditText>(R.id.postalCodeEditText).text.toString())){
             inputOk = false
         }
         if(findViewById<EditText>(R.id.cityEditText).text.toString().length <1){
-            inputOk = false
-        }
-        if(findViewById<EditText>(R.id.phoneEditText).text.toString().length <1){
-            inputOk = false
-        }
-        if(findViewById<EditText>(R.id.eMailEditText).text.toString().length <1){
-            inputOk = false
-        }
-        if(findViewById<EditText>(R.id.webUrlTextView).text.length <1){
             inputOk = false
         }
         //You are not allowed to add same restaurant multiple times
@@ -139,9 +154,12 @@ class AddNewRestaurant : AppCompatActivity() {
                 if(rest.address == findViewById<EditText>(R.id.addressEditText).text.toString()){
                     inputOk = false
                 }
-
             }
         }
         return inputOk
+    }
+
+    fun isNumericToX(toCheck: String): Boolean {
+        return toCheck.toDoubleOrNull() != null
     }
 }
