@@ -60,7 +60,7 @@ class DetailsActivity : AppCompatActivity() {
         phoneNumberTextView.text = restaurant.phoneNumber
         emailTextView.text = restaurant.mail
         webUrlTextView.text = restaurant.webUrl
-        //If reviewtext is too long, shorten to 50 characters
+        //If reviewText is too long, shorten to 50 characters
         if (restaurant.review.length > 50){
             val text = restaurant.review.substring(0,50)
             reviewTextView.text = text

@@ -21,6 +21,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import java.lang.Thread.sleep
 
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -100,6 +101,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 mMap.addMarker(MarkerOptions().position(restaurantPosition).title(restaurant.name))
                 if(restaurant.name == selectedRestaurant.name && restaurant.address == selectedRestaurant.address && restaurant.city == selectedRestaurant.city){
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantPosition,15.0f))
+                    marker?.showInfoWindow()
                 }
             }
 

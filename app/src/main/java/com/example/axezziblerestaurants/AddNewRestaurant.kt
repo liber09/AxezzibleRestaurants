@@ -82,7 +82,7 @@ class AddNewRestaurant : AppCompatActivity() {
     Save the information to the database.
      */
     private fun saveToDatabase() {
-        if(validateInput()){
+        //if(validateInput()){
             val name = findViewById<EditText>(R.id.nameEditText).text.toString()
             val type = findViewById<EditText>(R.id.typeEditText).text.toString()
             val guideDogsAllowed = findViewById<Switch>(R.id.guideDogsAllowedSwitch).isChecked
@@ -99,34 +99,32 @@ class AddNewRestaurant : AppCompatActivity() {
             val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"/restaurants/default.jpg",rating,phoneNumber,emailAddress, webUrl, description, review)
             db.collection("restaurants").add(restaurant) //Add restaurant to database
             finish()
-        }else{
-            Toast.makeText(this,"Check your input",Toast.LENGTH_SHORT)
-        }
+        //
 
     }
 
     //Validate input fields Return false if any field is not correctly entered
     private fun validateInput():Boolean {
         var inputOk = true
-        if(findViewById<EditText>(R.id.nameEditText).text.length < 3){
+        if(findViewById<EditText>(R.id.nameEditText).text.toString().length < 3){
             inputOk = false
         }
-        if(findViewById<EditText>(R.id.typeEditText).text.length < 3){
+        if(findViewById<EditText>(R.id.typeEditText).text.toString().length < 3){
             inputOk = false
         }
-        if (findViewById<EditText>(R.id.addressEditText).text.length <1){
+        if (findViewById<EditText>(R.id.addressEditText).text.toString().length <1){
             inputOk = false
         }
-        if(findViewById<EditText>(R.id.postalCodeEditText).text.length != 5){
+        if(findViewById<EditText>(R.id.postalCodeEditText).text.toString().length != 5){
             inputOk = false
         }
-        if(findViewById<EditText>(R.id.cityEditText).text.length <1){
+        if(findViewById<EditText>(R.id.cityEditText).text.toString().length <1){
             inputOk = false
         }
-        if(findViewById<EditText>(R.id.phoneEditText).text.length <1){
+        if(findViewById<EditText>(R.id.phoneEditText).text.toString().length <1){
             inputOk = false
         }
-        if(findViewById<EditText>(R.id.eMailEditText).text.length <1){
+        if(findViewById<EditText>(R.id.eMailEditText).text.toString().length <1){
             inputOk = false
         }
         if(findViewById<EditText>(R.id.webUrlTextView).text.length <1){
