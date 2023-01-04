@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             "TiAmo",
             "Italian",
             true,
-            true,
+            false,
             "Strandvägen 4",
             44431,
             "Stenungsund",

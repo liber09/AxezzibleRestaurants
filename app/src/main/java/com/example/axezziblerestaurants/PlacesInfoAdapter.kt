@@ -44,10 +44,11 @@ class PlacesInfoAdapter(val context : Context) : GoogleMap.InfoWindowAdapter {
             imageref.downloadUrl.addOnSuccessListener { Uri ->
                 val imageURL = Uri.toString() // get the URL for the image
                 //Use third party product glide to load the image into the imageview
-                Glide.with(this.context)
+                Glide.with(context)
                     .load(imageURL)
                     .into(restaurantImage)
             }
+
         }
         //Set the correct image on guideDogs and Accessibility images depending on database val
         val pack = this.javaClass.packageName
