@@ -28,4 +28,5 @@
     <string name="description">Beskrivning</string>
     <string name="goBack">Tillbaka</string>
     <string name="reviews">Recensioner</string>
+    <string name="review">Recension</string>
 </resources>
