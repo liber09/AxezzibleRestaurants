@@ -10,11 +10,15 @@ import android.provider.ContactsContract.Data
 import android.provider.MediaStore
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.UploadTask
+import com.google.firebase.storage.ktx.storage
+import java.util.*
 
-
-
+lateinit var fileName: String
 class AddNewRestaurant : AppCompatActivity() {
     //initialize database
     val db = Firebase.firestore
@@ -57,6 +61,8 @@ class AddNewRestaurant : AppCompatActivity() {
      */
     private fun saveToDatabase() {
         //if(validateInput()){
+
+            imageUri?.let { uploadImageToFirebase(it) }
             val name = findViewById<EditText>(R.id.nameEditText).text.toString()
             val type = findViewById<EditText>(R.id.typeEditText).text.toString()
             val guideDogsAllowed = findViewById<Switch>(R.id.guideDogsAllowedSwitch).isChecked
@@ -70,11 +76,33 @@ class AddNewRestaurant : AppCompatActivity() {
             val webUrl = findViewById<EditText>(R.id.WebUrlEditText).text.toString()
             val description = findViewById<EditText>(R.id.descriptionEditText).text.toString()
             val review = findViewById<EditText>(R.id.addNewReviewEditText).text.toString()
-            val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,"/restaurants/default.jpg",rating,phoneNumber,emailAddress, webUrl, description, review)
+            val pathFile = "/restaurants/$fileName"
+            val restaurant = Restaurant(name,type,guideDogsAllowed,accessible,address,postalCode,city,pathFile,rating,phoneNumber,emailAddress, webUrl, description, review)
             db.collection("restaurants").add(restaurant) //Add restaurant to database
             finish()
         //
 
+    }
+
+    private fun uploadImageToFirebase(fileUri: Uri) {
+        if (fileUri != null) {
+            fileName = UUID.randomUUID().toString() +".jpg"
+
+            //val refStorage = FirebaseStorage.getInstance().reference.child("restaurants/$fileName")
+            val refStorage = Firebase.storage.reference.child("restaurants/$fileName")
+
+            refStorage.putFile(fileUri)
+                .addOnSuccessListener(
+                    OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                        taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                            val imageUrl = it.toString()
+                        }
+                    })
+
+                ?.addOnFailureListener(OnFailureListener { e ->
+                    print(e.message)
+                })
+        }
     }
 
     //Validate input fields Return false if any field is not correctly entered
