@@ -84,13 +84,14 @@ class AddNewRestaurant : AppCompatActivity() {
 
     }
 
+    //Upload a image to Firebase
     private fun uploadImageToFirebase(fileUri: Uri) {
         if (fileUri != null) {
-            fileName = UUID.randomUUID().toString() +".jpg"
+            fileName = UUID.randomUUID().toString() +".jpg" //Set filename
 
-            //val refStorage = FirebaseStorage.getInstance().reference.child("restaurants/$fileName")
             val refStorage = Firebase.storage.reference.child("restaurants/$fileName")
 
+            //Upload the file
             refStorage.putFile(fileUri)
                 .addOnSuccessListener(
                     OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
