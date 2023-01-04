@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract.Data
 import android.provider.MediaStore
@@ -13,11 +14,12 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
-const val PERMISSION_CODE = 1000
-const val IMAGE_CAPTURE_CODE = 1001
+
 class AddNewRestaurant : AppCompatActivity() {
     //initialize database
     val db = Firebase.firestore
+    private val pickImage = 100
+    private var imageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_restaurant)
@@ -37,46 +39,18 @@ class AddNewRestaurant : AppCompatActivity() {
         }
         val addImageButton = findViewById<Button>(R.id.addImageButton)
         addImageButton.setOnClickListener{
-            openCamera()
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, pickImage)
         }
     }
-
-    private fun openCamera() {
-        //camera intent
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-        startActivity(cameraIntent)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        //called when user presses ALLOW or DENY from Permission Request Popup
-        when(requestCode){
-            PERMISSION_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED){
-                    //permission from popup was granted
-                    openCamera()
-                }
-                else{
-                    //permission from popup was denied
-                    //Toast.makeText(this@AddNewRestaurant,"Permission denied")
-                }
-            }
-        }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val imageView = findViewById<ImageView>(R.id.addRestaurantImage)
-        if (requestCode == IMAGE_CAPTURE_CODE) {
-            // BitMap is data structure of image file which store the image in memory
-            val photo = data!!.extras!!["data"] as Bitmap?
-            // Set the image in imageview for display
-            imageView.setImageBitmap(photo)
+        if (resultCode == RESULT_OK && requestCode == pickImage) {
+            imageUri = data?.data
+            val addImageView = findViewById<ImageView>(R.id.addRestaurantImage)
+            addImageView.setImageURI(imageUri)
         }
     }
-
     /*
     Read the data from the textfields
     Save the information to the database.
