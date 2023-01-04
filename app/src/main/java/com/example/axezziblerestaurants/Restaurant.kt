@@ -12,7 +12,7 @@ data class Restaurant(
     val imageName: String = "",
     val rating: Double = 0.0,
     val phoneNumber: String = "",
-    val eMail: String = "",
+    val mail: String = "",
     val webUrl: String = "",
     val description: String = "",
     val review: String = "",

@@ -95,10 +95,9 @@ class MainActivity : AppCompatActivity() {
             "/restaurants/tiamo.jpg",
             4.5,
             "0303-88859",
-            eMail="info@tiamostenungsund.se",
             webUrl="https://www.tiamostenungsund.se/",
             description ="Nice italian restaurant with a good mix of foods.", review = "Nice italian food. You always feel welcome. Nice place, will come back",
-            reviewerName = "Ludwig B"
+            reviewerName = "Ludwig B",mail="info@tiamostenungsund.se"
         )
         //Create the second restaurant object
         val restaurantTwo = Restaurant(
@@ -106,7 +105,7 @@ class MainActivity : AppCompatActivity() {
             "Hamburger", false,
             true, "Stenunge allé 1", 44430,
             "Stenungsund", "/restaurants/mcd_stenungsund.jpeg", 3.0, "0303-65480",
-            webUrl="https://www.mcdonalds.com/se/sv-se/location/160.html", eMail ="info@mcdonaldsstenungsund.se",
+            webUrl="https://www.mcdonalds.com/se/sv-se/location/160.html", mail ="info@mcdonaldsstenungsund.se",
             description ="Fastfood, nothing else to say.", review = "Good for beeing a fast food restaurant. Clean and fresh",
             reviewerName = "Camilla A."
         )
@@ -116,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             "Hamburger", true,
             true, "Sandbergs plats 1", 44430,
             "Stenungsund", "/restaurants/tonys.jpeg", 5.0,"072-5113397",
-            webUrl="https://stenungsund.tonysrestaurang.se/", eMail ="tony.holm@tonysrestaurang.se",
+            webUrl="https://stenungsund.tonysrestaurang.se/", mail ="tony.holm@tonysrestaurang.se",
             description = "Probably the best burger in town!", review = "Best burgers i have ever eaten. Recommend!!",
             reviewerName = "Erik"
         )
@@ -126,7 +125,7 @@ class MainActivity : AppCompatActivity() {
             "HomeCooking", true,
             false, "Västra köpmansgatan 2", 44430,
             "Stenungsund", "/restaurants/karlbergs.jpeg", 3.5,"0303-80300",
-            webUrl="https://stenungsund.tonysrestaurang.se/", eMail = "info@karlbergskrog.se",
+            webUrl="https://stenungsund.tonysrestaurang.se/", mail = "info@karlbergskrog.se",
             description = "Nice fashionable restaurant with excellent view of the harbor and sea.", review = "A little expensive but i kinda like it. Food is good, view is excellent",
             reviewerName = "Sven Svensson"
         )

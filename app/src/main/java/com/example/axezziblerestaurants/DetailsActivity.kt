@@ -58,7 +58,7 @@ class DetailsActivity : AppCompatActivity() {
         postalAddressTextView.text = restaurant.postalCode.toString().plus(" ".plus(restaurant.city))
         ratingView.rating = restaurant.rating.toFloat()
         phoneNumberTextView.text = restaurant.phoneNumber
-        emailTextView.text = restaurant.eMail
+        emailTextView.text = restaurant.mail
         webUrlTextView.text = restaurant.webUrl
         //If reviewtext is too long, shorten to 50 characters
         if (restaurant.review.length > 50){
