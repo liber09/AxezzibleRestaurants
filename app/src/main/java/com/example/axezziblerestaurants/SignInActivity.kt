@@ -1,6 +1,7 @@
 package com.example.axezziblerestaurants
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -65,7 +66,7 @@ class SignInActivity : AppCompatActivity() {
                 if(task.isSuccessful){
                     Log.d("!!!", "User signedIn")
                     val mainActivity = Intent(this,MainActivity::class.java) //Get a reference to the game activity screen
-                    startActivity(mainActivity) //Go to mainActivity
+                    finish()
                 }else{
                     Log.d("!!!", "User not signedIn ${task.exception}")
                     Toast.makeText(this@SignInActivity,"" +

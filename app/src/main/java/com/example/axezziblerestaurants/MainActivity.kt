@@ -19,23 +19,31 @@ class MainActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var auth: FirebaseAuth //authentication
     val db = Firebase.firestore  //initialize database
+    var userSignedin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         addInitialData() //Add the first restaurants that are included in app
         auth = Firebase.auth
+        if(auth.currentUser != null){
+            userSignedin = true;
+            changeLoginButtonToLogOutButton()
+        }
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this) //Set the layout manager
         //Get the new restaurant button
         val newRestaurantButtonClick = findViewById<Button>(R.id.addNewResButton)
         //Set a clickListener
         newRestaurantButtonClick.setOnClickListener {
-            val user = FirebaseAuth.getInstance().currentUser  //Get the user currently logged in
             //Check if user is logged in
-            if(user == null){
+            if(auth.currentUser == null){
+                userSignedin = false
+                changeLogoutButtonToLoginButton()
                 Toast.makeText(this@MainActivity,"You have to be signed in to add new restaurants!", Toast.LENGTH_SHORT).show() //Show warning message that user has to be signed in
             }else {
+                userSignedin = true
+                changeLoginButtonToLogOutButton()
                 val newRestaurantScreen = Intent(
                     this, AddNewRestaurant::class.java
                 ) //Get a reference to the game activity screen
@@ -46,34 +54,71 @@ class MainActivity : AppCompatActivity() {
         val signInButton = findViewById<Button>(R.id.startSignInButton)
         //Set a clickListener on the button
         signInButton.setOnClickListener{
+            if(!userSignedin){
+                //Get the sign in activity
+                val signInActivity = Intent(this,SignInActivity::class.java) //Get a reference to the game activity screen
+                //Launch the sign in activity
+                startActivity(signInActivity) //Go to signIn
+            }else{
+                changeLoginButtonToLogOutButton()
+            }
+        }
+        isUserSignedIn()
+
+            //Get a reference to the collection
+            val docRef = db.collection("restaurants")
+
+            //Get snapshots if any
+            docRef.addSnapshotListener { snapshot, e ->
+                //if there are snapshots
+                if (snapshot != null) {
+
+                    //Empty the restaurant list
+                    DataManager.restaurants.clear()
+
+                    //for each document (restaurant). Convert to restaurant object and add to restaurant list
+                    for (document in snapshot.documents) {
+                        val item = document.toObject<Restaurant>()
+                        if (item != null) {
+                            DataManager.restaurants.add(item)
+
+                        }
+                    }
+                }
+            }
+
+
+        Thread.sleep(1_000) //Sleep while waiting for database response
+        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
+    }
+
+    private fun isUserSignedIn() {
+        //Check if user is logged in
+        if(auth.currentUser != null) {
+            userSignedin = true
+            changeLoginButtonToLogOutButton()
+        }
+    }
+
+    private fun changeLoginButtonToLogOutButton() {
+        val button = findViewById<Button>(R.id.startSignInButton)
+        button.text = getString(R.string.signOut)
+        button.setOnClickListener{
+            auth.signOut()
+            userSignedin = false
+            changeLogoutButtonToLoginButton()
+    }
+}
+    private fun changeLogoutButtonToLoginButton() {
+        val button = findViewById<Button>(R.id.startSignInButton)
+        button.text = getString(R.string.signIn)
+        button.setOnClickListener{
             //Get the sign in activity
             val signInActivity = Intent(this,SignInActivity::class.java) //Get a reference to the game activity screen
             //Launch the sign in activity
             startActivity(signInActivity) //Go to signIn
+            isUserSignedIn()
         }
-        //Get a reference to the collection
-        val docRef = db.collection("restaurants")
-
-        //Get snapshots if any
-        docRef.addSnapshotListener { snapshot, e ->
-            //if there are snapshots
-            if (snapshot != null) {
-
-                //Empty the restaurant list
-                DataManager.restaurants.clear()
-
-                //for each document (restaurant). Convert to restaurant object and add to restaurant list
-                for (document in snapshot.documents) {
-                    val item = document.toObject<Restaurant>()
-                    if (item != null) {
-                        DataManager.restaurants.add(item)
-
-                    }
-                }
-            }
-        }
-        Thread.sleep(1_000) //Sleep while waiting for database response
-        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
     }
 
     override fun onResume() {
