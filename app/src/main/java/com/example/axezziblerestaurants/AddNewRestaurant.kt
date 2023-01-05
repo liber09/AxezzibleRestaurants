@@ -104,7 +104,6 @@ class AddNewRestaurant : AppCompatActivity() {
         }else{
             Toast.makeText(this@AddNewRestaurant,"Please check the filled in data and try again", Toast.LENGTH_LONG).show() //Show warning message that user has to be signed in
         }
-
     }
 
     //Upload a image to Firebase

@@ -18,8 +18,8 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var auth: FirebaseAuth //authentication
-    val db = Firebase.firestore  //initialize database
     var userSignedin = false
+    val db = Firebase.firestore  //initialize database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this) //Set the layout manager
+        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
         //Get the new restaurant button
         val newRestaurantButtonClick = findViewById<Button>(R.id.addNewResButton)
         //Set a clickListener
@@ -64,32 +65,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         isUserSignedIn()
-
-            //Get a reference to the collection
-            val docRef = db.collection("restaurants")
-
-            //Get snapshots if any
-            docRef.addSnapshotListener { snapshot, e ->
-                //if there are snapshots
-                if (snapshot != null) {
-
-                    //Empty the restaurant list
-                    DataManager.restaurants.clear()
-
-                    //for each document (restaurant). Convert to restaurant object and add to restaurant list
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Restaurant>()
-                        if (item != null) {
-                            DataManager.restaurants.add(item)
-
-                        }
-                    }
-                }
-            }
-
-
         Thread.sleep(1_000) //Sleep while waiting for database response
-        recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
     private fun isUserSignedIn() {
