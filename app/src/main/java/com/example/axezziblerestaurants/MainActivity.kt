@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        addInitialData() //Add the first restaurants that are included in app
         auth = Firebase.auth
         if(auth.currentUser != null){
             userSignedin = true;
@@ -69,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyDataSetChanged()
     }
 
+    //Checks if anyone is signed in
     private fun isUserSignedIn() {
         //Check if user is logged in
         if(auth.currentUser != null) {
@@ -77,16 +77,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeLoginButtonToLogOutButton() {
+    //Change the signinbutton to signout button
+    fun changeLoginButtonToLogOutButton() {
         val button = findViewById<Button>(R.id.startSignInButton)
-        button.text = getString(R.string.signOut)
+        button.text = getString(R.string.signOut) //Set new text on button
+        //Add clicklistener
         button.setOnClickListener{
-            auth.signOut()
-            userSignedin = false
-            changeLogoutButtonToLoginButton()
+            auth.signOut() //Sign out
+            userSignedin = false //Set user signout property
+            changeLogoutButtonToLoginButton() //Call to change button to signin since no user is currently signed in.
     }
 }
-    private fun changeLogoutButtonToLoginButton() {
+    //Change the LogoutButton to SignInButton
+    fun changeLogoutButtonToLoginButton() {
         val button = findViewById<Button>(R.id.startSignInButton)
         button.text = getString(R.string.signIn)
         button.setOnClickListener{
@@ -94,67 +97,12 @@ class MainActivity : AppCompatActivity() {
             val signInActivity = Intent(this,SignInActivity::class.java) //Get a reference to the game activity screen
             //Launch the sign in activity
             startActivity(signInActivity) //Go to signIn
-            isUserSignedIn()
+            isUserSignedIn() //Check if user is signed in or not
         }
     }
-
+    //When we return update restaurant list
     override fun onResume() {
         super.onResume()
         recyclerView.adapter = RestaurantRecyclerAdapter(this, DataManager.restaurants) //Attach data to the recyclerview when returning to main activity
     }
-
-    //Creates the first default restaurants included in app
-    private fun addInitialData() {
-        //Create the first restaurant object
-        val restaurantOne = Restaurant(
-            "TiAmo",
-            "Italian",
-            true,
-            false,
-            "Strandvägen 4",
-            44431,
-            "Stenungsund",
-            "/restaurants/tiamo.jpg",
-            4.5,
-            "0303-88859",
-            webUrl="https://www.tiamostenungsund.se/",
-            description ="Nice italian restaurant with a good mix of foods.", review = "Nice italian food. You always feel welcome. Nice place, will come back",
-            reviewerName = "Ludwig B",mail="info@tiamostenungsund.se"
-        )
-        //Create the second restaurant object
-        val restaurantTwo = Restaurant(
-            "McDonalds",
-            "Hamburger", false,
-            true, "Stenunge allé 1", 44430,
-            "Stenungsund", "/restaurants/mcd_stenungsund.jpeg", 3.0, "0303-65480",
-            webUrl="https://www.mcdonalds.com/se/sv-se/location/160.html", mail ="info@mcdonaldsstenungsund.se",
-            description ="Fastfood, nothing else to say.", review = "Good for beeing a fast food restaurant. Clean and fresh",
-            reviewerName = "Camilla A."
-        )
-        //Create the third restaurant object
-        val restaurantThree = Restaurant(
-            "Tonys",
-            "Hamburger", true,
-            true, "Sandbergs plats 1", 44430,
-            "Stenungsund", "/restaurants/tonys.jpeg", 5.0,"072-5113397",
-            webUrl="https://stenungsund.tonysrestaurang.se/", mail ="tony.holm@tonysrestaurang.se",
-            description = "Probably the best burger in town!", review = "Best burgers i have ever eaten. Recommend!!",
-            reviewerName = "Erik"
-        )
-        //Create the fourth restaurant object
-        val restaurantFour = Restaurant(
-            "Karlbergs Krog",
-            "HomeCooking", true,
-            false, "Västra köpmansgatan 2", 44430,
-            "Stenungsund", "/restaurants/karlbergs.jpeg", 3.5,"0303-80300",
-            webUrl="https://stenungsund.tonysrestaurang.se/", mail = "info@karlbergskrog.se",
-            description = "Nice fashionable restaurant with excellent view of the harbor and sea.", review = "A little expensive but i kinda like it. Food is good, view is excellent",
-            reviewerName = "Sven Svensson"
-        )
-        //Add it to collection restaurants, SetOptions.merge() = do not overwrite if exists
-        db.collection("restaurants").document("0").set(restaurantOne, SetOptions.merge())
-        db.collection("restaurants").document("1").set(restaurantTwo, SetOptions.merge())
-        db.collection("restaurants").document("2").set(restaurantThree, SetOptions.merge())
-        db.collection("restaurants").document("3").set(restaurantFour, SetOptions.merge())
-        }
 }
