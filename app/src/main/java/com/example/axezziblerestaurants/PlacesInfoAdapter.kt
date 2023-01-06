@@ -36,39 +36,6 @@ class PlacesInfoAdapter(val context : Context) : GoogleMap.InfoWindowAdapter {
         nameView.text = restaurant?.name
         typeView.text = restaurant?.type
         rating.rating = restaurant?.rating?.toFloat() ?: 0.0.toFloat()
-        /*
-        if(restaurant?.imageName?.isNotEmpty() == true) {
-            val imageref = Firebase.storage.reference.child(restaurant?.imageName)
-            imageref.downloadUrl.addOnSuccessListener { Uri ->
-                val imageURL = Uri.toString() // get the URL for the image
-                //Use third party product glide to load the image into the imageview
-                Glide.with(context)
-                    .load(imageURL)
-                    .into(restaurantImage)
-            }
-
-        }
-        //Set the correct image on guideDogs and Accessibility images depending on database val
-        val pack = this.javaClass.packageName
-        if(restaurant?.guideDogsAllowed == true){
-            val uriImage = "@drawable/".plus("guidedogs_allowed") //Get filePath
-            val imageResource = context.resources.getIdentifier(uriImage, null, pack) //Get the actual image
-            dogsAllowed.setImageBitmap(BitmapFactory.decodeResource(context.resources, imageResource)) //Show the image on screen
-        }else{
-            val uriImage = "@drawable/".plus("dogs_not_allowed") //Get filePath
-            val imageResource = context.resources.getIdentifier(uriImage, null, pack) //Get the actual image
-            dogsAllowed.setImageBitmap(BitmapFactory.decodeResource(context.resources, imageResource)) //Show the image on screen
-        }
-        if(restaurant?.accessible == true){
-            val uriImage = "@drawable/".plus("accessible") //Get filePath
-            val imageResource = context.resources.getIdentifier(uriImage, null, pack) //Get the actual image
-            accessibleRestaurant.setImageBitmap(BitmapFactory.decodeResource(context.resources, imageResource)) //Show the image on screen
-        }else{
-            val uriImage = "@drawable/".plus("not_accessible") //Get filePath
-            val imageResource = context.resources.getIdentifier(uriImage, null,pack) //Get the actual image
-            accessibleRestaurant.setImageBitmap(BitmapFactory.decodeResource(context.resources, imageResource)) //Show the image on screen
-        }
-        */
         return infoWindow
     }
 

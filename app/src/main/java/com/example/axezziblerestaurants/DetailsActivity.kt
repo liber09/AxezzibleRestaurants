@@ -51,6 +51,7 @@ class DetailsActivity : AppCompatActivity() {
 
         //Get the restaurant from database
         val restaurant = DataManager.restaurants[restaurantPosition]
+
         //Add data to the component views
         nameTextView.text = restaurant.name
         typeTextView.text = restaurant.type
@@ -107,6 +108,7 @@ class DetailsActivity : AppCompatActivity() {
                 startActivity(mapActivity) //Go to mainActivity
             }
 
+            //add clicklistener to morereview textview
             moreReviewsText.setOnClickListener{
                 //Get the review activity we wanna go to
                 val reviewActivity = Intent(this,reviewActivity::class.java) //Get a reference to the review activity screen
@@ -115,9 +117,5 @@ class DetailsActivity : AppCompatActivity() {
                 startActivity(reviewActivity) //Go to reviewActivity
             }
         }
-
-
-
-
     }
 }

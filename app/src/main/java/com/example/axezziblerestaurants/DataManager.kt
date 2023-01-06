@@ -9,11 +9,11 @@ import com.google.firebase.ktx.Firebase
 object DataManager {
     //The list that holds all restaurants
     val restaurants = mutableListOf<Restaurant>()
-
     init{
         getAllRestaurants() //Returns all restaurants
     }
 
+    //return all restaurants
     private fun getAllRestaurants() {
         val db = Firebase.firestore
         val dbRestaurants = db.collection("restaurants") //Get the collection in dv

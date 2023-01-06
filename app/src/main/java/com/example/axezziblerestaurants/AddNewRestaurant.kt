@@ -47,6 +47,7 @@ class AddNewRestaurant : AppCompatActivity() {
             startActivityForResult(gallery, pickImage)
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == pickImage) {
@@ -59,6 +60,7 @@ class AddNewRestaurant : AppCompatActivity() {
     Read the data from the textfields
     Save the information to the database.
      */
+
     private fun saveToDatabase() {
         if(validateInput()) {
 
@@ -158,6 +160,8 @@ class AddNewRestaurant : AppCompatActivity() {
         return inputOk
     }
 
+    //Method to check if string is number only by trying to convert to double if
+    //string is anything else than all number toDoubleOrNull will return null
     fun isNumericToX(toCheck: String): Boolean {
         return toCheck.toDoubleOrNull() != null
     }

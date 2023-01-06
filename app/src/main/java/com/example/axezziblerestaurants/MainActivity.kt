@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(newRestaurantScreen) //Go to the new restaurant activity
             }
         }
+
         //Get the sign in button
         val signInButton = findViewById<Button>(R.id.startSignInButton)
         //Set a clickListener on the button
@@ -100,6 +101,7 @@ class MainActivity : AppCompatActivity() {
             isUserSignedIn() //Check if user is signed in or not
         }
     }
+
     //When we return update restaurant list
     override fun onResume() {
         super.onResume()
